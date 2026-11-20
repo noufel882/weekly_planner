@@ -1,0 +1,324 @@
+﻿namespace Weekly_Planner
+{
+    partial class frmMain
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            label1 = new Label();
+            panel1 = new Panel();
+            label6 = new Label();
+            lblPlannedDays = new Label();
+            label4 = new Label();
+            lblActivitiesCount = new Label();
+            label3 = new Label();
+            lblTotalTime = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            label11 = new Label();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            label2 = new Label();
+            label5 = new Label();
+            panel1.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.BackColor = Color.FromArgb(1, 34, 38, 74);
+            label1.Font = new Font("Tahoma", 21F, FontStyle.Bold);
+            label1.ForeColor = SystemColors.ControlLight;
+            label1.Location = new Point(1368, 41);
+            label1.Name = "label1";
+            label1.Size = new Size(320, 51);
+            label1.TabIndex = 0;
+            label1.Text = "مخطط الأسبوع";
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.BackColor = Color.FromArgb(34, 28, 52);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(lblPlannedDays);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lblActivitiesCount);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(lblTotalTime);
+            panel1.Location = new Point(16, 108);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1672, 147);
+            panel1.TabIndex = 1;
+            // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            label6.AutoSize = true;
+            label6.BackColor = Color.FromArgb(1, 34, 38, 74);
+            label6.Font = new Font("Tahoma", 13F);
+            label6.ForeColor = Color.Silver;
+            label6.Location = new Point(181, 30);
+            label6.Name = "label6";
+            label6.Size = new Size(243, 31);
+            label6.TabIndex = 6;
+            label6.Text = "عدد الايام المخطط لها";
+            // 
+            // lblPlannedDays
+            // 
+            lblPlannedDays.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            lblPlannedDays.AutoSize = true;
+            lblPlannedDays.BackColor = Color.FromArgb(1, 34, 38, 74);
+            lblPlannedDays.Font = new Font("Tahoma", 21F, FontStyle.Bold);
+            lblPlannedDays.ForeColor = SystemColors.ControlLight;
+            lblPlannedDays.Location = new Point(316, 81);
+            lblPlannedDays.Name = "lblPlannedDays";
+            lblPlannedDays.Size = new Size(100, 51);
+            lblPlannedDays.TabIndex = 5;
+            lblPlannedDays.Text = "7/0";
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            label4.AutoSize = true;
+            label4.BackColor = Color.FromArgb(1, 34, 38, 74);
+            label4.Font = new Font("Tahoma", 13F);
+            label4.ForeColor = Color.Silver;
+            label4.Location = new Point(797, 30);
+            label4.Name = "label4";
+            label4.Size = new Size(153, 31);
+            label4.TabIndex = 4;
+            label4.Text = "عدد الأنشطة";
+            // 
+            // lblActivitiesCount
+            // 
+            lblActivitiesCount.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            lblActivitiesCount.AutoSize = true;
+            lblActivitiesCount.BackColor = Color.FromArgb(1, 34, 38, 74);
+            lblActivitiesCount.Font = new Font("Tahoma", 21F, FontStyle.Bold);
+            lblActivitiesCount.ForeColor = SystemColors.ControlLight;
+            lblActivitiesCount.Location = new Point(902, 81);
+            lblActivitiesCount.Name = "lblActivitiesCount";
+            lblActivitiesCount.Size = new Size(49, 51);
+            lblActivitiesCount.TabIndex = 3;
+            lblActivitiesCount.Text = "0";
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            label3.AutoSize = true;
+            label3.BackColor = Color.FromArgb(1, 34, 38, 74);
+            label3.Font = new Font("Tahoma", 13F);
+            label3.ForeColor = Color.Silver;
+            label3.Location = new Point(1414, 30);
+            label3.Name = "label3";
+            label3.Size = new Size(235, 31);
+            label3.TabIndex = 2;
+            label3.Text = "مجموع وقت الأسبوع";
+            // 
+            // lblTotalTime
+            // 
+            lblTotalTime.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            lblTotalTime.AutoSize = true;
+            lblTotalTime.BackColor = Color.FromArgb(1, 34, 38, 74);
+            lblTotalTime.Font = new Font("Tahoma", 21F, FontStyle.Bold);
+            lblTotalTime.ForeColor = SystemColors.ControlLight;
+            lblTotalTime.Location = new Point(1597, 81);
+            lblTotalTime.Name = "lblTotalTime";
+            lblTotalTime.Size = new Size(49, 51);
+            lblTotalTime.TabIndex = 1;
+            lblTotalTime.Text = "0";
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel1.BackColor = Color.FromArgb(34, 28, 52);
+            tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            tableLayoutPanel1.ColumnCount = 7;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.28571F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tableLayoutPanel1.Controls.Add(label11, 5, 0);
+            tableLayoutPanel1.Controls.Add(label10, 4, 0);
+            tableLayoutPanel1.Controls.Add(label9, 3, 0);
+            tableLayoutPanel1.Controls.Add(label8, 2, 0);
+            tableLayoutPanel1.Controls.Add(label7, 1, 0);
+            tableLayoutPanel1.Controls.Add(label2, 6, 0);
+            tableLayoutPanel1.Controls.Add(label5, 0, 0);
+            tableLayoutPanel1.Location = new Point(16, 286);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
+            tableLayoutPanel1.Size = new Size(1672, 511);
+            tableLayoutPanel1.TabIndex = 2;
+            // 
+            // label11
+            // 
+            label11.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label11.AutoSize = true;
+            label11.BackColor = Color.FromArgb(1, 34, 38, 74);
+            label11.Font = new Font("Tahoma", 18F);
+            label11.ForeColor = SystemColors.ControlLight;
+            label11.Location = new Point(1194, 1);
+            label11.Name = "label11";
+            label11.Size = new Size(231, 76);
+            label11.TabIndex = 13;
+            label11.Text = "الإثنين";
+            label11.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            label10.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label10.AutoSize = true;
+            label10.BackColor = Color.FromArgb(1, 34, 38, 74);
+            label10.Font = new Font("Tahoma", 18F);
+            label10.ForeColor = SystemColors.ControlLight;
+            label10.Location = new Point(956, 1);
+            label10.Name = "label10";
+            label10.Size = new Size(231, 76);
+            label10.TabIndex = 12;
+            label10.Text = "الثلاثاء";
+            label10.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            label9.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label9.AutoSize = true;
+            label9.BackColor = Color.FromArgb(1, 34, 38, 74);
+            label9.Font = new Font("Tahoma", 18F);
+            label9.ForeColor = SystemColors.ControlLight;
+            label9.Location = new Point(718, 1);
+            label9.Name = "label9";
+            label9.Size = new Size(231, 76);
+            label9.TabIndex = 11;
+            label9.Text = "الأربعاء";
+            label9.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            label8.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label8.AutoSize = true;
+            label8.BackColor = Color.FromArgb(1, 34, 38, 74);
+            label8.Font = new Font("Tahoma", 18F);
+            label8.ForeColor = SystemColors.ControlLight;
+            label8.Location = new Point(480, 1);
+            label8.Name = "label8";
+            label8.Size = new Size(231, 76);
+            label8.TabIndex = 10;
+            label8.Text = "الخميس";
+            label8.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label7.AutoSize = true;
+            label7.BackColor = Color.FromArgb(1, 34, 38, 74);
+            label7.Font = new Font("Tahoma", 18F);
+            label7.ForeColor = SystemColors.ControlLight;
+            label7.Location = new Point(242, 1);
+            label7.Name = "label7";
+            label7.Size = new Size(231, 76);
+            label7.TabIndex = 9;
+            label7.Text = "الجمعة";
+            label7.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label2.AutoSize = true;
+            label2.BackColor = Color.FromArgb(1, 34, 38, 74);
+            label2.Font = new Font("Tahoma", 18F);
+            label2.ForeColor = SystemColors.ControlLight;
+            label2.Location = new Point(1432, 1);
+            label2.Name = "label2";
+            label2.Size = new Size(236, 76);
+            label2.TabIndex = 7;
+            label2.Text = "الأحد";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            label5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label5.AutoSize = true;
+            label5.BackColor = Color.FromArgb(1, 34, 38, 74);
+            label5.Font = new Font("Tahoma", 18F);
+            label5.ForeColor = SystemColors.ControlLight;
+            label5.Location = new Point(4, 1);
+            label5.Name = "label5";
+            label5.Size = new Size(231, 76);
+            label5.TabIndex = 8;
+            label5.Text = "السبت";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // frmMain
+            // 
+            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            BackColor = Color.FromArgb(23, 28, 52);
+            ClientSize = new Size(1702, 815);
+            Controls.Add(tableLayoutPanel1);
+            Controls.Add(panel1);
+            Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "frmMain";
+            Text = "main";
+            WindowState = FormWindowState.Maximized;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private Label label1;
+        private Panel panel1;
+        private Label label6;
+        private Label lblPlannedDays;
+        private Label label4;
+        private Label lblActivitiesCount;
+        private Label label3;
+        private Label lblTotalTime;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Label label2;
+        private Label label5;
+        private Label label11;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private Label label7;
+    }
+}
