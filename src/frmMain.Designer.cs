@@ -45,6 +45,13 @@
             label7 = new Label();
             label2 = new Label();
             label5 = new Label();
+            daysPanel1 = new Weekly_Planner.Controls.DaysPanel();
+            daysPanel2 = new Weekly_Planner.Controls.DaysPanel();
+            daysPanel3 = new Weekly_Planner.Controls.DaysPanel();
+            daysPanel4 = new Weekly_Planner.Controls.DaysPanel();
+            daysPanel5 = new Weekly_Planner.Controls.DaysPanel();
+            daysPanel6 = new Weekly_Planner.Controls.DaysPanel();
+            daysPanel7 = new Weekly_Planner.Controls.DaysPanel();
             panel1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -56,7 +63,7 @@
             label1.BackColor = Color.FromArgb(1, 34, 38, 74);
             label1.Font = new Font("Tahoma", 21F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ControlLight;
-            label1.Location = new Point(1368, 41);
+            label1.Location = new Point(1426, 41);
             label1.Name = "label1";
             label1.Size = new Size(320, 51);
             label1.TabIndex = 0;
@@ -74,7 +81,7 @@
             panel1.Controls.Add(lblTotalTime);
             panel1.Location = new Point(16, 108);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1672, 147);
+            panel1.Size = new Size(1730, 147);
             panel1.TabIndex = 1;
             // 
             // label6
@@ -110,7 +117,7 @@
             label4.BackColor = Color.FromArgb(1, 34, 38, 74);
             label4.Font = new Font("Tahoma", 13F);
             label4.ForeColor = Color.Silver;
-            label4.Location = new Point(797, 30);
+            label4.Location = new Point(826, 30);
             label4.Name = "label4";
             label4.Size = new Size(153, 31);
             label4.TabIndex = 4;
@@ -123,7 +130,7 @@
             lblActivitiesCount.BackColor = Color.FromArgb(1, 34, 38, 74);
             lblActivitiesCount.Font = new Font("Tahoma", 21F, FontStyle.Bold);
             lblActivitiesCount.ForeColor = SystemColors.ControlLight;
-            lblActivitiesCount.Location = new Point(902, 81);
+            lblActivitiesCount.Location = new Point(931, 81);
             lblActivitiesCount.Name = "lblActivitiesCount";
             lblActivitiesCount.Size = new Size(49, 51);
             lblActivitiesCount.TabIndex = 3;
@@ -136,7 +143,7 @@
             label3.BackColor = Color.FromArgb(1, 34, 38, 74);
             label3.Font = new Font("Tahoma", 13F);
             label3.ForeColor = Color.Silver;
-            label3.Location = new Point(1414, 30);
+            label3.Location = new Point(1472, 30);
             label3.Name = "label3";
             label3.Size = new Size(235, 31);
             label3.TabIndex = 2;
@@ -149,7 +156,7 @@
             lblTotalTime.BackColor = Color.FromArgb(1, 34, 38, 74);
             lblTotalTime.Font = new Font("Tahoma", 21F, FontStyle.Bold);
             lblTotalTime.ForeColor = SystemColors.ControlLight;
-            lblTotalTime.Location = new Point(1597, 81);
+            lblTotalTime.Location = new Point(1655, 81);
             lblTotalTime.Name = "lblTotalTime";
             lblTotalTime.Size = new Size(49, 51);
             lblTotalTime.TabIndex = 1;
@@ -168,6 +175,12 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tableLayoutPanel1.Controls.Add(daysPanel7, 6, 1);
+            tableLayoutPanel1.Controls.Add(daysPanel6, 5, 1);
+            tableLayoutPanel1.Controls.Add(daysPanel5, 4, 1);
+            tableLayoutPanel1.Controls.Add(daysPanel4, 3, 1);
+            tableLayoutPanel1.Controls.Add(daysPanel3, 2, 1);
+            tableLayoutPanel1.Controls.Add(daysPanel2, 1, 1);
             tableLayoutPanel1.Controls.Add(label11, 5, 0);
             tableLayoutPanel1.Controls.Add(label10, 4, 0);
             tableLayoutPanel1.Controls.Add(label9, 3, 0);
@@ -175,12 +188,13 @@
             tableLayoutPanel1.Controls.Add(label7, 1, 0);
             tableLayoutPanel1.Controls.Add(label2, 6, 0);
             tableLayoutPanel1.Controls.Add(label5, 0, 0);
+            tableLayoutPanel1.Controls.Add(daysPanel1, 0, 1);
             tableLayoutPanel1.Location = new Point(16, 286);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
-            tableLayoutPanel1.Size = new Size(1672, 511);
+            tableLayoutPanel1.Size = new Size(1730, 511);
             tableLayoutPanel1.TabIndex = 2;
             // 
             // label11
@@ -190,9 +204,9 @@
             label11.BackColor = Color.FromArgb(1, 34, 38, 74);
             label11.Font = new Font("Tahoma", 18F);
             label11.ForeColor = SystemColors.ControlLight;
-            label11.Location = new Point(1194, 1);
+            label11.Location = new Point(1238, 1);
             label11.Name = "label11";
-            label11.Size = new Size(231, 76);
+            label11.Size = new Size(240, 76);
             label11.TabIndex = 13;
             label11.Text = "الإثنين";
             label11.TextAlign = ContentAlignment.MiddleCenter;
@@ -204,9 +218,9 @@
             label10.BackColor = Color.FromArgb(1, 34, 38, 74);
             label10.Font = new Font("Tahoma", 18F);
             label10.ForeColor = SystemColors.ControlLight;
-            label10.Location = new Point(956, 1);
+            label10.Location = new Point(991, 1);
             label10.Name = "label10";
-            label10.Size = new Size(231, 76);
+            label10.Size = new Size(240, 76);
             label10.TabIndex = 12;
             label10.Text = "الثلاثاء";
             label10.TextAlign = ContentAlignment.MiddleCenter;
@@ -218,9 +232,9 @@
             label9.BackColor = Color.FromArgb(1, 34, 38, 74);
             label9.Font = new Font("Tahoma", 18F);
             label9.ForeColor = SystemColors.ControlLight;
-            label9.Location = new Point(718, 1);
+            label9.Location = new Point(744, 1);
             label9.Name = "label9";
-            label9.Size = new Size(231, 76);
+            label9.Size = new Size(240, 76);
             label9.TabIndex = 11;
             label9.Text = "الأربعاء";
             label9.TextAlign = ContentAlignment.MiddleCenter;
@@ -232,9 +246,9 @@
             label8.BackColor = Color.FromArgb(1, 34, 38, 74);
             label8.Font = new Font("Tahoma", 18F);
             label8.ForeColor = SystemColors.ControlLight;
-            label8.Location = new Point(480, 1);
+            label8.Location = new Point(497, 1);
             label8.Name = "label8";
-            label8.Size = new Size(231, 76);
+            label8.Size = new Size(240, 76);
             label8.TabIndex = 10;
             label8.Text = "الخميس";
             label8.TextAlign = ContentAlignment.MiddleCenter;
@@ -246,9 +260,9 @@
             label7.BackColor = Color.FromArgb(1, 34, 38, 74);
             label7.Font = new Font("Tahoma", 18F);
             label7.ForeColor = SystemColors.ControlLight;
-            label7.Location = new Point(242, 1);
+            label7.Location = new Point(250, 1);
             label7.Name = "label7";
-            label7.Size = new Size(231, 76);
+            label7.Size = new Size(240, 76);
             label7.TabIndex = 9;
             label7.Text = "الجمعة";
             label7.TextAlign = ContentAlignment.MiddleCenter;
@@ -260,9 +274,9 @@
             label2.BackColor = Color.FromArgb(1, 34, 38, 74);
             label2.Font = new Font("Tahoma", 18F);
             label2.ForeColor = SystemColors.ControlLight;
-            label2.Location = new Point(1432, 1);
+            label2.Location = new Point(1485, 1);
             label2.Name = "label2";
-            label2.Size = new Size(236, 76);
+            label2.Size = new Size(241, 76);
             label2.TabIndex = 7;
             label2.Text = "الأحد";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -276,17 +290,108 @@
             label5.ForeColor = SystemColors.ControlLight;
             label5.Location = new Point(4, 1);
             label5.Name = "label5";
-            label5.Size = new Size(231, 76);
+            label5.Size = new Size(239, 76);
             label5.TabIndex = 8;
             label5.Text = "السبت";
             label5.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // daysPanel1
+            // 
+            daysPanel1.AutoScroll = true;
+            daysPanel1.Dock = DockStyle.Fill;
+            daysPanel1.FlowDirection = FlowDirection.TopDown;
+            daysPanel1.Location = new Point(4, 81);
+            daysPanel1.Name = "daysPanel1";
+            daysPanel1.Padding = new Padding(0, 3, 0, 3);
+            daysPanel1.Size = new Size(239, 426);
+            daysPanel1.TabIndex = 14;
+            daysPanel1.TasksCount = 0;
+            daysPanel1.WrapContents = false;
+            // 
+            // daysPanel2
+            // 
+            daysPanel2.AutoScroll = true;
+            daysPanel2.Dock = DockStyle.Fill;
+            daysPanel2.FlowDirection = FlowDirection.TopDown;
+            daysPanel2.Location = new Point(250, 81);
+            daysPanel2.Name = "daysPanel2";
+            daysPanel2.Padding = new Padding(0, 3, 0, 3);
+            daysPanel2.Size = new Size(240, 426);
+            daysPanel2.TabIndex = 15;
+            daysPanel2.TasksCount = 0;
+            daysPanel2.WrapContents = false;
+            // 
+            // daysPanel3
+            // 
+            daysPanel3.AutoScroll = true;
+            daysPanel3.Dock = DockStyle.Fill;
+            daysPanel3.FlowDirection = FlowDirection.TopDown;
+            daysPanel3.Location = new Point(497, 81);
+            daysPanel3.Name = "daysPanel3";
+            daysPanel3.Padding = new Padding(0, 3, 0, 3);
+            daysPanel3.Size = new Size(240, 426);
+            daysPanel3.TabIndex = 16;
+            daysPanel3.TasksCount = 0;
+            daysPanel3.WrapContents = false;
+            // 
+            // daysPanel4
+            // 
+            daysPanel4.AutoScroll = true;
+            daysPanel4.Dock = DockStyle.Fill;
+            daysPanel4.FlowDirection = FlowDirection.TopDown;
+            daysPanel4.Location = new Point(744, 81);
+            daysPanel4.Name = "daysPanel4";
+            daysPanel4.Padding = new Padding(0, 3, 0, 3);
+            daysPanel4.Size = new Size(240, 426);
+            daysPanel4.TabIndex = 17;
+            daysPanel4.TasksCount = 0;
+            daysPanel4.WrapContents = false;
+            // 
+            // daysPanel5
+            // 
+            daysPanel5.AutoScroll = true;
+            daysPanel5.Dock = DockStyle.Fill;
+            daysPanel5.FlowDirection = FlowDirection.TopDown;
+            daysPanel5.Location = new Point(991, 81);
+            daysPanel5.Name = "daysPanel5";
+            daysPanel5.Padding = new Padding(0, 3, 0, 3);
+            daysPanel5.Size = new Size(240, 426);
+            daysPanel5.TabIndex = 18;
+            daysPanel5.TasksCount = 0;
+            daysPanel5.WrapContents = false;
+            // 
+            // daysPanel6
+            // 
+            daysPanel6.AutoScroll = true;
+            daysPanel6.Dock = DockStyle.Fill;
+            daysPanel6.FlowDirection = FlowDirection.TopDown;
+            daysPanel6.Location = new Point(1238, 81);
+            daysPanel6.Name = "daysPanel6";
+            daysPanel6.Padding = new Padding(0, 3, 0, 3);
+            daysPanel6.Size = new Size(240, 426);
+            daysPanel6.TabIndex = 19;
+            daysPanel6.TasksCount = 0;
+            daysPanel6.WrapContents = false;
+            // 
+            // daysPanel7
+            // 
+            daysPanel7.AutoScroll = true;
+            daysPanel7.Dock = DockStyle.Fill;
+            daysPanel7.FlowDirection = FlowDirection.TopDown;
+            daysPanel7.Location = new Point(1485, 81);
+            daysPanel7.Name = "daysPanel7";
+            daysPanel7.Padding = new Padding(0, 3, 0, 3);
+            daysPanel7.Size = new Size(241, 426);
+            daysPanel7.TabIndex = 20;
+            daysPanel7.TasksCount = 0;
+            daysPanel7.WrapContents = false;
             // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(23, 28, 52);
-            ClientSize = new Size(1702, 815);
+            ClientSize = new Size(1760, 815);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(panel1);
             Controls.Add(label1);
@@ -320,5 +425,12 @@
         private Label label9;
         private Label label8;
         private Label label7;
+        private Controls.DaysPanel daysPanel7;
+        private Controls.DaysPanel daysPanel6;
+        private Controls.DaysPanel daysPanel5;
+        private Controls.DaysPanel daysPanel4;
+        private Controls.DaysPanel daysPanel3;
+        private Controls.DaysPanel daysPanel2;
+        private Controls.DaysPanel daysPanel1;
     }
 }
