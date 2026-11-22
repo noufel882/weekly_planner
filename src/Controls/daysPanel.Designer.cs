@@ -45,7 +45,7 @@
             btnAddNew.BackColor = Color.FromArgb(245,20, 20, 35);
             btnAddNew.ForeColor = Color.Gray;
             btnAddNew.Font = new Font("Tahoma", 12, FontStyle.Bold);
-            btnAddNew.Click += (s, e) => CreateNewActivity(e);
+            btnAddNew.Click += btnAddNew_Click;
             ///////////////////////////////////////////////////////////////////////
             this.Padding = new Padding(0, 3, 0,3);
             this.Controls.Add(btnAddNew);

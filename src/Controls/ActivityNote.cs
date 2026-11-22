@@ -1,51 +1,59 @@
 ﻿#pragma warning disable WFO1000 // Disable the warning for missing XML comments on public members
+using Weekly_Planner.Models;
+
 namespace Weekly_Planner.Controls
 {
     public partial class ActivityNote : UserControl
     {
-        private int _duration;
+
+        private ActivityInfo _activityInfo;
+
+        
         /// <summary>
         /// get or set the duration of the activity in minutes.
         /// </summary>
         public int Duration
         {
-            get { return _duration; }
+            get { return _activityInfo.Duration; }
             set
             {
-                _duration = value;
-                lblDuration.Text = _duration.ToString();
+                _activityInfo.Duration = value;
+                lblDuration.Text = _activityInfo.Duration.ToString();
             }
         }
 
         /// <summary>
         /// Get or set the content of the activity note.
         /// </summary>
-        public string Content
+        public string Description
         {
-            get { return lblContent.Text; }
-            set { lblContent.Text = value; }
+            get { return _activityInfo.Description; }
+            set {
+                _activityInfo.Description = value;
+                lblDescription.Text = value;
+            }
         }
         /// <summary>
         /// Get or set the title of the activity note.
         /// </summary>
         public string Title
         {
-            get { return lblTitle.Text; }
-            set { lblTitle.Text = value; }
+            get { return _activityInfo.Title; }
+            set {
+                _activityInfo.Title = value;
+                lblTitle.Text = value;
+            }
         }
 
-        public ActivityNote()
+        public ActivityNote(ActivityInfo activityInfo)
         {
             InitializeComponent();
+            _activityInfo = activityInfo;
+            Title = activityInfo.Title;
+            Description = activityInfo.Description;
+            Duration = activityInfo.Duration;
         }
 
-        public ActivityNote(string title, string content, int duration)
-        {
-            InitializeComponent();
-            Title = title;
-            Content = content;
-            Duration = duration;
-        }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {

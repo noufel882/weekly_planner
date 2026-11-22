@@ -32,7 +32,7 @@
             label2 = new Label();
             label3 = new Label();
             txtTitle = new TextBox();
-            txtContent = new RichTextBox();
+            txtDescription = new RichTextBox();
             btnConfirm = new Button();
             nudDuration = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)nudDuration).BeginInit();
@@ -85,13 +85,13 @@
             // 
             // txtContent
             // 
-            txtContent.BackColor = Color.FromArgb(34, 28, 52);
-            txtContent.ForeColor = Color.White;
-            txtContent.Location = new Point(19, 172);
-            txtContent.Name = "txtContent";
-            txtContent.Size = new Size(563, 376);
-            txtContent.TabIndex = 4;
-            txtContent.Text = "";
+            txtDescription.BackColor = Color.FromArgb(34, 28, 52);
+            txtDescription.ForeColor = Color.White;
+            txtDescription.Location = new Point(19, 172);
+            txtDescription.Name = "txtContent";
+            txtDescription.Size = new Size(563, 376);
+            txtDescription.TabIndex = 4;
+            txtDescription.Text = "";
             // 
             // btnConfirm
             // 
@@ -103,6 +103,7 @@
             btnConfirm.TabIndex = 5;
             btnConfirm.Text = "تأكيد";
             btnConfirm.UseVisualStyleBackColor = false;
+            btnConfirm.Click += btnConfirm_Click;
             // 
             // nudDuration
             // 
@@ -125,7 +126,7 @@
             ClientSize = new Size(608, 714);
             Controls.Add(nudDuration);
             Controls.Add(btnConfirm);
-            Controls.Add(txtContent);
+            Controls.Add(txtDescription);
             Controls.Add(txtTitle);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -147,7 +148,7 @@
         private Label label2;
         private Label label3;
         private TextBox txtTitle;
-        private RichTextBox txtContent;
+        private RichTextBox txtDescription;
         private Button btnConfirm;
         private NumericUpDown nudDuration;
     }

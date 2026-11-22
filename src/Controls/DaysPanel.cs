@@ -1,5 +1,8 @@
 ﻿#pragma warning disable WFO1000 // Disable the warning for the file
 
+using Weekly_Planner.Forms;
+using Weekly_Planner.Models;
+
 namespace Weekly_Planner.Controls
 {
     public partial class DaysPanel : FlowLayoutPanel
@@ -40,33 +43,36 @@ namespace Weekly_Planner.Controls
             InitializeComponent();
         }
 
-        private void CreateNewActivity(EventArgs e)
+        private void btnAddNew_Click(object sender, EventArgs e)
         {
-            //sample data for testing
-            var newActivity = new ActivityNote("عنوان النشاط", "محتوى النشاط", 60)
-            {
-                Margin = new Padding(0, 3, 0, 3),
-            };
-
-            this.Controls.Add(newActivity);
-            // Set "Add New" button at the tail of the controls collection
-            this.Controls.SetChildIndex(btnAddNew, this.Controls.Count - 1);
-            TasksCount++;
+            using frmCreateActivity frmCreateActivity = new frmCreateActivity();
+            frmCreateActivity.ActivityCreated += AddActivity;
+            frmCreateActivity.ShowDialog();
 
         }
 
-        public void RemoveActivity(ActivityNote Activity)
+        public void AddActivity(object? sender, ActivityInfo Activity)
         {
-            if (this.Controls.Contains(Activity))
+            this.Controls.Add(new ActivityNote(Activity));
+            TasksCount++;
+
+            // Ensure the "Add New" button is always at the bottom of the panel
+            this.Controls.SetChildIndex(btnAddNew, Controls.Count - 1);
+
+        }
+
+        //Note :
+        //Do this proccess done through event to avoid the circular reference between DaysPanel and ActivityNote.
+        //
+        public void RemoveActivity(ActivityNote Note)
+        {
+            if (this.Controls.Contains(Note))
             {
-                this.Controls.Remove(Activity);
+                this.Controls.Remove(Note);
+                Note.Dispose();
                 TasksCount--;         
             }
         }
 
-        protected override void OnPaint(PaintEventArgs pe)
-        {
-            base.OnPaint(pe);
-        }
     }
 }

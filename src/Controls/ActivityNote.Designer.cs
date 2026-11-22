@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActivityNote));
             lblTitle = new Label();
-            lblContent = new Label();
+            lblDescription = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
             flowLayoutPanel1 = new FlowLayoutPanel();
@@ -59,14 +59,14 @@
             // 
             // lblContent
             // 
-            lblContent.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblContent.AutoSize = true;
-            lblContent.ForeColor = Color.White;
-            lblContent.Location = new Point(91, 37);
-            lblContent.Name = "lblContent";
-            lblContent.Size = new Size(72, 25);
-            lblContent.TabIndex = 1;
-            lblContent.Text = "content";
+            lblDescription.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblDescription.AutoSize = true;
+            lblDescription.ForeColor = Color.White;
+            lblDescription.Location = new Point(91, 37);
+            lblDescription.Name = "lblContent";
+            lblDescription.Size = new Size(72, 25);
+            lblDescription.TabIndex = 1;
+            lblDescription.Text = "content";
             // 
             // panel1
             // 
@@ -148,7 +148,7 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(1, 34, 28, 52);
-            panel3.Controls.Add(lblContent);
+            panel3.Controls.Add(lblDescription);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 44);
             panel3.Name = "panel3";
@@ -180,7 +180,7 @@
         #endregion
 
         private Label lblTitle;
-        private Label lblContent;
+        private Label lblDescription;
         private Panel panel1;
         private Panel panel2;
         private Label lblDuration;
