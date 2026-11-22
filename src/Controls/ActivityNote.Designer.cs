@@ -159,7 +159,7 @@
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.FromArgb(230, 34, 28, 52);
+            BackColor = Color.FromArgb(34, 28, 52);
             BorderStyle = BorderStyle.Fixed3D;
             Controls.Add(panel3);
             Controls.Add(panel2);
