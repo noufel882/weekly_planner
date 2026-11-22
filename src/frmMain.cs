@@ -32,15 +32,12 @@ namespace Weekly_Planner
         ///<summary> Gets or sets the total planned time in minutes </summary>
         public int TotalPlannedTime
         {
+            get => _totalPlannedTime;
             set
             {
                 _totalPlannedTime = value;
                 var time = TimeSpan.FromMinutes(_totalPlannedTime);
                 lblTotalTime.Text = $" يوم {time.Days} " + $" ساعة {time.Hours} " + $" دقيقة {time.Minutes} ";
-            }
-            get
-            {
-                return _totalPlannedTime;
             }
         }
 
@@ -52,29 +49,28 @@ namespace Weekly_Planner
             PlanningDays = 0;
         }
 
-        private void daysPanel_TaskAdded(object sender, EventArgs e)
-        {
-            UpdateStatus();
-        }
+        private void daysPanel_NoteAdded(object sender, EventArgs e) => UpdateStatus();
 
-        private void daysPanel_TaskRemoved(object sender, EventArgs e)
-        {
-            UpdateStatus();
-        }
+        private void daysPanel_NoteRemoved(object sender, EventArgs e) => UpdateStatus();
+
+        private void daysPanel_NoteEdited(object sender, EventArgs e) => UpdateStatus();
 
         private void UpdateStatus()
-        {      
+        {
             int plannedDays = 0;
             int totalPlannedTime = 0;
             int taskCount = 0;
 
-            foreach (var dayPanel in tlpDaysTable.Controls.OfType<DaysPanel>())
+            foreach (var item in tlpDaysTable.Controls)
             {
-                if (dayPanel.TasksCount > 0)
+                if (item is DaysPanel dayPanel)
                 {
-                    plannedDays++;
-                    taskCount += dayPanel.TasksCount;
-                    totalPlannedTime += dayPanel.TotalPlannedTime;
+                    if (dayPanel.TasksCount > 0)
+                    {
+                        plannedDays++;
+                        taskCount += dayPanel.TasksCount;
+                        totalPlannedTime += dayPanel.TotalPlannedTime;
+                    }
                 }
             }
 
@@ -84,6 +80,6 @@ namespace Weekly_Planner
             TasksCount = taskCount;
 
         }
-      
+
     }
 }

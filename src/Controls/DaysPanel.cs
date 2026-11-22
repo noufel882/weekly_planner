@@ -18,7 +18,7 @@ namespace Weekly_Planner.Controls
         {
             get =>_tasksCount; 
             // Update the tasksCount field and raise the appropriate event
-            private set => _tasksCount = value;
+            set => _tasksCount = value;
         }
         
 
@@ -46,18 +46,25 @@ namespace Weekly_Planner.Controls
         /// </summary>
         public int RemainingTime => MAX_TIME_PER_DAY - TotalPlannedTime;
 
-        public event EventHandler ActivityAdded;
-        public event EventHandler ActivityRemoved;
 
+        public event EventHandler ActivityRemoved;
         private void OnActivityRemoved(EventArgs e)
         {
             ActivityRemoved?.Invoke(this, e);
         }
 
+        public event EventHandler ActivityAdded;
         private void OnActivityAdded(EventArgs e)
         {
             ActivityAdded?.Invoke(this, e);
         }
+
+        public event EventHandler ActivityEdited;
+        private void OnActivityEdited(EventArgs e)
+        {
+            ActivityEdited?.Invoke(this, e);
+        }
+
 
         public DaysPanel()
         {
@@ -80,7 +87,12 @@ namespace Weekly_Planner.Controls
 
         public void AddActivity(object? sender, ActivityInfo Activity)
         {
-            this.Controls.Add(new Note(Activity));
+            var newNote = new Note(Activity);
+
+            newNote.UserWannaDeletingNote += RemoveActivity;
+            newNote.UserWannaEditingNote += EditActivity;
+
+            this.Controls.Add(newNote);
             TasksCount++;
 
             // Ensure the "Add New" button is always at the bottom of the panel
@@ -88,14 +100,18 @@ namespace Weekly_Planner.Controls
             OnActivityAdded(EventArgs.Empty);
         }
 
-        //Note :
-        //Do this proccess done through event to avoid the circular reference between DaysPanel and ActivityNote.
-        //
-        public void RemoveActivity(Note Note)
-        {
-            if (Note is null || !this.Controls.Contains(Note))
-                return;
+        public void EditActivity(object? sender, Note note)
+        {      
+            using frmCreateOrEditNote frmEditActivity = new frmCreateOrEditNote(RemainingTime + note.Duration, note.Info);            
+            frmEditActivity.ShowDialog();
+            OnActivityEdited(EventArgs.Empty);
 
+            // Refresh the note to reflect any changes made in the edit form
+            note.Refresh();
+        }
+
+        public void RemoveActivity(object? sender, Note Note)
+        {
             this.Controls.Remove(Note);
             Note.Dispose();
             TasksCount--;

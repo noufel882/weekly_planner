@@ -1,6 +1,6 @@
 ﻿namespace Weekly_Planner.Controls
 {
-    partial class ActivityNote
+    partial class Note
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActivityNote));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Note));
             lblTitle = new Label();
             lblDescription = new Label();
             panel1 = new Panel();

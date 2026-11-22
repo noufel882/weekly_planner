@@ -4,12 +4,30 @@ using Weekly_Planner.Models;
 
 namespace Weekly_Planner.Controls
 {
-    public partial class ActivityNote : UserControl
+    public partial class Note : UserControl
     {
         /// <summary>
-        /// Represents the activity information associated with this note.
+        /// Event triggered when the user wants to delete the note. The event passes the associated ActivityInfo as an argument.
         /// </summary>
+        public event EventHandler<Note> UserWannaDeletingNote;
+
+        private void OnUserWannaDeletingNote(Note activityInfo)
+        {
+            UserWannaDeletingNote?.Invoke(this, activityInfo);
+        }
+
+        /// <summary>
+        /// Event triggered when the user wants to edit the note. The event passes the associated ActivityInfo as an argument.
+        /// </summary>
+        public event EventHandler<Note> UserWannaEditingNote;
+        private void OnUserWannaEditingNote(Note activityInfo)
+        {
+            UserWannaEditingNote?.Invoke(this, activityInfo);
+        }
+
         private readonly ActivityInfo _activityInfo;
+
+        public ActivityInfo Info => _activityInfo;
 
 
         /// <summary>
@@ -50,7 +68,7 @@ namespace Weekly_Planner.Controls
             }
         }
 
-        public ActivityNote(ActivityInfo activityInfo)
+        public Note(ActivityInfo activityInfo)
         {
             InitializeComponent();
             _activityInfo = activityInfo;
@@ -61,25 +79,21 @@ namespace Weekly_Planner.Controls
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (this.Parent is DaysPanel daysPanel)
-            {
-                daysPanel.RemoveActivity(this);
-            }
+            OnUserWannaDeletingNote(this);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            using(var editForm = new frmCreateOrEditActivity(_activityInfo))
-            {
-                editForm.ShowDialog();
-            }
+            OnUserWannaEditingNote(this);
+        }
+    
 
-            
-            // Update the activity note with the edited information
+        public override void Refresh()
+        {
             Title = _activityInfo.Title;
             Description = _activityInfo.Description;
             Duration = _activityInfo.Duration;
+            base.Refresh();
         }
-    
     }
 }
