@@ -72,7 +72,7 @@
             label3.RightToLeft = RightToLeft.Yes;
             label3.Size = new Size(161, 32);
             label3.TabIndex = 2;
-            label3.Text = "المدة (دقايق) :";
+            label3.Text = "المدة (دقائق) :";
             // 
             // txtTitle
             // 
@@ -83,12 +83,12 @@
             txtTitle.Size = new Size(563, 31);
             txtTitle.TabIndex = 3;
             // 
-            // txtContent
+            // txtDescription
             // 
             txtDescription.BackColor = Color.FromArgb(34, 28, 52);
             txtDescription.ForeColor = Color.White;
             txtDescription.Location = new Point(19, 172);
-            txtDescription.Name = "txtContent";
+            txtDescription.Name = "txtDescription";
             txtDescription.Size = new Size(563, 376);
             txtDescription.TabIndex = 4;
             txtDescription.Text = "";
@@ -111,14 +111,14 @@
             nudDuration.ForeColor = Color.White;
             nudDuration.Increment = new decimal(new int[] { 5, 0, 0, 0 });
             nudDuration.Location = new Point(228, 576);
-            nudDuration.Maximum = new decimal(new int[] { 360, 0, 0, 0 });
+            nudDuration.Maximum = new decimal(new int[] { 1440, 0, 0, 0 });
             nudDuration.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
             nudDuration.Name = "nudDuration";
             nudDuration.Size = new Size(180, 31);
             nudDuration.TabIndex = 6;
             nudDuration.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
-            // frmCreateActivity
+            // frmCreateOrEditNote
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
@@ -132,7 +132,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
-            Name = "frmCreateActivity";
+            Name = "frmCreateOrEditNote";
             ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
