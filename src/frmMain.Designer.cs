@@ -37,7 +37,13 @@
             lblActivitiesCount = new Label();
             label3 = new Label();
             lblTotalTime = new Label();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            tlpDaysTable = new TableLayoutPanel();
+            pnlSunday = new Weekly_Planner.Controls.DaysPanel();
+            pnlMonday = new Weekly_Planner.Controls.DaysPanel();
+            pnlTuesday = new Weekly_Planner.Controls.DaysPanel();
+            pnlWednesday = new Weekly_Planner.Controls.DaysPanel();
+            pnlThursday = new Weekly_Planner.Controls.DaysPanel();
+            pnlFriday = new Weekly_Planner.Controls.DaysPanel();
             label11 = new Label();
             label10 = new Label();
             label9 = new Label();
@@ -45,15 +51,9 @@
             label7 = new Label();
             label2 = new Label();
             label5 = new Label();
-            daysPanel1 = new Weekly_Planner.Controls.DaysPanel();
-            daysPanel2 = new Weekly_Planner.Controls.DaysPanel();
-            daysPanel3 = new Weekly_Planner.Controls.DaysPanel();
-            daysPanel4 = new Weekly_Planner.Controls.DaysPanel();
-            daysPanel5 = new Weekly_Planner.Controls.DaysPanel();
-            daysPanel6 = new Weekly_Planner.Controls.DaysPanel();
-            daysPanel7 = new Weekly_Planner.Controls.DaysPanel();
+            pnlSaturday = new Weekly_Planner.Controls.DaysPanel();
             panel1.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
+            tlpDaysTable.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -63,7 +63,7 @@
             label1.BackColor = Color.FromArgb(1, 34, 38, 74);
             label1.Font = new Font("Tahoma", 21F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ControlLight;
-            label1.Location = new Point(1426, 41);
+            label1.Location = new Point(1426, 38);
             label1.Name = "label1";
             label1.Size = new Size(320, 51);
             label1.TabIndex = 0;
@@ -162,40 +162,130 @@
             lblTotalTime.TabIndex = 1;
             lblTotalTime.Text = "0";
             // 
-            // tableLayoutPanel1
+            // tlpDaysTable
             // 
-            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tableLayoutPanel1.BackColor = Color.FromArgb(34, 28, 52);
-            tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            tableLayoutPanel1.ColumnCount = 7;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.28571F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
-            tableLayoutPanel1.Controls.Add(daysPanel7, 6, 1);
-            tableLayoutPanel1.Controls.Add(daysPanel6, 5, 1);
-            tableLayoutPanel1.Controls.Add(daysPanel5, 4, 1);
-            tableLayoutPanel1.Controls.Add(daysPanel4, 3, 1);
-            tableLayoutPanel1.Controls.Add(daysPanel3, 2, 1);
-            tableLayoutPanel1.Controls.Add(daysPanel2, 1, 1);
-            tableLayoutPanel1.Controls.Add(label11, 5, 0);
-            tableLayoutPanel1.Controls.Add(label10, 4, 0);
-            tableLayoutPanel1.Controls.Add(label9, 3, 0);
-            tableLayoutPanel1.Controls.Add(label8, 2, 0);
-            tableLayoutPanel1.Controls.Add(label7, 1, 0);
-            tableLayoutPanel1.Controls.Add(label2, 6, 0);
-            tableLayoutPanel1.Controls.Add(label5, 0, 0);
-            tableLayoutPanel1.Controls.Add(daysPanel1, 0, 1);
-            tableLayoutPanel1.Location = new Point(16, 286);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
-            tableLayoutPanel1.Size = new Size(1730, 511);
-            tableLayoutPanel1.TabIndex = 2;
+            tlpDaysTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tlpDaysTable.BackColor = Color.FromArgb(34, 28, 52);
+            tlpDaysTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            tlpDaysTable.ColumnCount = 7;
+            tlpDaysTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.28571F));
+            tlpDaysTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tlpDaysTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tlpDaysTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tlpDaysTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tlpDaysTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tlpDaysTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
+            tlpDaysTable.Controls.Add(pnlSunday, 6, 1);
+            tlpDaysTable.Controls.Add(pnlMonday, 5, 1);
+            tlpDaysTable.Controls.Add(pnlTuesday, 4, 1);
+            tlpDaysTable.Controls.Add(pnlWednesday, 3, 1);
+            tlpDaysTable.Controls.Add(pnlThursday, 2, 1);
+            tlpDaysTable.Controls.Add(pnlFriday, 1, 1);
+            tlpDaysTable.Controls.Add(label11, 5, 0);
+            tlpDaysTable.Controls.Add(label10, 4, 0);
+            tlpDaysTable.Controls.Add(label9, 3, 0);
+            tlpDaysTable.Controls.Add(label8, 2, 0);
+            tlpDaysTable.Controls.Add(label7, 1, 0);
+            tlpDaysTable.Controls.Add(label2, 6, 0);
+            tlpDaysTable.Controls.Add(label5, 0, 0);
+            tlpDaysTable.Controls.Add(pnlSaturday, 0, 1);
+            tlpDaysTable.Location = new Point(16, 286);
+            tlpDaysTable.Name = "tlpDaysTable";
+            tlpDaysTable.RowCount = 2;
+            tlpDaysTable.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
+            tlpDaysTable.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
+            tlpDaysTable.Size = new Size(1730, 511);
+            tlpDaysTable.TabIndex = 2;
+            // 
+            // pnlSunday
+            // 
+            pnlSunday.AutoScroll = true;
+            pnlSunday.Dock = DockStyle.Fill;
+            pnlSunday.FlowDirection = FlowDirection.TopDown;
+            pnlSunday.Location = new Point(1485, 81);
+            pnlSunday.Name = "pnlSunday";
+            pnlSunday.Padding = new Padding(0, 3, 0, 3);
+            pnlSunday.Size = new Size(241, 426);
+            pnlSunday.TabIndex = 20;
+            pnlSunday.TasksCount = 0;
+            pnlSunday.WrapContents = false;
+            pnlSunday.ActivityAdded += daysPanel_TaskAdded;
+            pnlSunday.ActivityRemoved += daysPanel_TaskRemoved;
+            // 
+            // pnlMonday
+            // 
+            pnlMonday.AutoScroll = true;
+            pnlMonday.Dock = DockStyle.Fill;
+            pnlMonday.FlowDirection = FlowDirection.TopDown;
+            pnlMonday.Location = new Point(1238, 81);
+            pnlMonday.Name = "pnlMonday";
+            pnlMonday.Padding = new Padding(0, 3, 0, 3);
+            pnlMonday.Size = new Size(240, 426);
+            pnlMonday.TabIndex = 19;
+            pnlMonday.TasksCount = 0;
+            pnlMonday.WrapContents = false;
+            pnlMonday.ActivityAdded += daysPanel_TaskAdded;
+            pnlMonday.ActivityRemoved += daysPanel_TaskRemoved;
+            // 
+            // pnlTuesday
+            // 
+            pnlTuesday.AutoScroll = true;
+            pnlTuesday.Dock = DockStyle.Fill;
+            pnlTuesday.FlowDirection = FlowDirection.TopDown;
+            pnlTuesday.Location = new Point(991, 81);
+            pnlTuesday.Name = "pnlTuesday";
+            pnlTuesday.Padding = new Padding(0, 3, 0, 3);
+            pnlTuesday.Size = new Size(240, 426);
+            pnlTuesday.TabIndex = 18;
+            pnlTuesday.TasksCount = 0;
+            pnlTuesday.WrapContents = false;
+            pnlTuesday.ActivityAdded += daysPanel_TaskAdded;
+            pnlTuesday.ActivityRemoved += daysPanel_TaskRemoved;
+            // 
+            // pnlWednsday
+            // 
+            pnlWednesday.AutoScroll = true;
+            pnlWednesday.Dock = DockStyle.Fill;
+            pnlWednesday.FlowDirection = FlowDirection.TopDown;
+            pnlWednesday.Location = new Point(744, 81);
+            pnlWednesday.Name = "pnlWednsday";
+            pnlWednesday.Padding = new Padding(0, 3, 0, 3);
+            pnlWednesday.Size = new Size(240, 426);
+            pnlWednesday.TabIndex = 17;
+            pnlWednesday.TasksCount = 0;
+            pnlWednesday.WrapContents = false;
+            pnlWednesday.ActivityAdded += daysPanel_TaskAdded;
+            pnlWednesday.ActivityRemoved += daysPanel_TaskRemoved;
+            // 
+            // pnlThusday
+            // 
+            pnlThursday.AutoScroll = true;
+            pnlThursday.Dock = DockStyle.Fill;
+            pnlThursday.FlowDirection = FlowDirection.TopDown;
+            pnlThursday.Location = new Point(497, 81);
+            pnlThursday.Name = "pnlThusday";
+            pnlThursday.Padding = new Padding(0, 3, 0, 3);
+            pnlThursday.Size = new Size(240, 426);
+            pnlThursday.TabIndex = 16;
+            pnlThursday.TasksCount = 0;
+            pnlThursday.WrapContents = false;
+            pnlThursday.ActivityAdded += daysPanel_TaskAdded;
+            pnlThursday.ActivityRemoved += daysPanel_TaskRemoved;
+            // 
+            // pnlFriday
+            // 
+            pnlFriday.AutoScroll = true;
+            pnlFriday.Dock = DockStyle.Fill;
+            pnlFriday.FlowDirection = FlowDirection.TopDown;
+            pnlFriday.Location = new Point(250, 81);
+            pnlFriday.Name = "pnlFriday";
+            pnlFriday.Padding = new Padding(0, 3, 0, 3);
+            pnlFriday.Size = new Size(240, 426);
+            pnlFriday.TabIndex = 15;
+            pnlFriday.TasksCount = 0;
+            pnlFriday.WrapContents = false;
+            pnlFriday.ActivityAdded += daysPanel_TaskAdded;
+            pnlFriday.ActivityRemoved += daysPanel_TaskRemoved;
             // 
             // label11
             // 
@@ -295,96 +385,20 @@
             label5.Text = "السبت";
             label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // daysPanel1
+            // pnlSaturday
             // 
-            daysPanel1.AutoScroll = true;
-            daysPanel1.Dock = DockStyle.Fill;
-            daysPanel1.FlowDirection = FlowDirection.TopDown;
-            daysPanel1.Location = new Point(4, 81);
-            daysPanel1.Name = "daysPanel1";
-            daysPanel1.Padding = new Padding(0, 3, 0, 3);
-            daysPanel1.Size = new Size(239, 426);
-            daysPanel1.TabIndex = 14;
-            daysPanel1.TasksCount = 0;
-            daysPanel1.WrapContents = false;
-            // 
-            // daysPanel2
-            // 
-            daysPanel2.AutoScroll = true;
-            daysPanel2.Dock = DockStyle.Fill;
-            daysPanel2.FlowDirection = FlowDirection.TopDown;
-            daysPanel2.Location = new Point(250, 81);
-            daysPanel2.Name = "daysPanel2";
-            daysPanel2.Padding = new Padding(0, 3, 0, 3);
-            daysPanel2.Size = new Size(240, 426);
-            daysPanel2.TabIndex = 15;
-            daysPanel2.TasksCount = 0;
-            daysPanel2.WrapContents = false;
-            // 
-            // daysPanel3
-            // 
-            daysPanel3.AutoScroll = true;
-            daysPanel3.Dock = DockStyle.Fill;
-            daysPanel3.FlowDirection = FlowDirection.TopDown;
-            daysPanel3.Location = new Point(497, 81);
-            daysPanel3.Name = "daysPanel3";
-            daysPanel3.Padding = new Padding(0, 3, 0, 3);
-            daysPanel3.Size = new Size(240, 426);
-            daysPanel3.TabIndex = 16;
-            daysPanel3.TasksCount = 0;
-            daysPanel3.WrapContents = false;
-            // 
-            // daysPanel4
-            // 
-            daysPanel4.AutoScroll = true;
-            daysPanel4.Dock = DockStyle.Fill;
-            daysPanel4.FlowDirection = FlowDirection.TopDown;
-            daysPanel4.Location = new Point(744, 81);
-            daysPanel4.Name = "daysPanel4";
-            daysPanel4.Padding = new Padding(0, 3, 0, 3);
-            daysPanel4.Size = new Size(240, 426);
-            daysPanel4.TabIndex = 17;
-            daysPanel4.TasksCount = 0;
-            daysPanel4.WrapContents = false;
-            // 
-            // daysPanel5
-            // 
-            daysPanel5.AutoScroll = true;
-            daysPanel5.Dock = DockStyle.Fill;
-            daysPanel5.FlowDirection = FlowDirection.TopDown;
-            daysPanel5.Location = new Point(991, 81);
-            daysPanel5.Name = "daysPanel5";
-            daysPanel5.Padding = new Padding(0, 3, 0, 3);
-            daysPanel5.Size = new Size(240, 426);
-            daysPanel5.TabIndex = 18;
-            daysPanel5.TasksCount = 0;
-            daysPanel5.WrapContents = false;
-            // 
-            // daysPanel6
-            // 
-            daysPanel6.AutoScroll = true;
-            daysPanel6.Dock = DockStyle.Fill;
-            daysPanel6.FlowDirection = FlowDirection.TopDown;
-            daysPanel6.Location = new Point(1238, 81);
-            daysPanel6.Name = "daysPanel6";
-            daysPanel6.Padding = new Padding(0, 3, 0, 3);
-            daysPanel6.Size = new Size(240, 426);
-            daysPanel6.TabIndex = 19;
-            daysPanel6.TasksCount = 0;
-            daysPanel6.WrapContents = false;
-            // 
-            // daysPanel7
-            // 
-            daysPanel7.AutoScroll = true;
-            daysPanel7.Dock = DockStyle.Fill;
-            daysPanel7.FlowDirection = FlowDirection.TopDown;
-            daysPanel7.Location = new Point(1485, 81);
-            daysPanel7.Name = "daysPanel7";
-            daysPanel7.Padding = new Padding(0, 3, 0, 3);
-            daysPanel7.Size = new Size(241, 426);
-            daysPanel7.TabIndex = 20;
-            daysPanel7.TasksCount = 0;
-            daysPanel7.WrapContents = false;
+            pnlSaturday.AutoScroll = true;
+            pnlSaturday.Dock = DockStyle.Fill;
+            pnlSaturday.FlowDirection = FlowDirection.TopDown;
+            pnlSaturday.Location = new Point(4, 81);
+            pnlSaturday.Name = "pnlSaturday";
+            pnlSaturday.Padding = new Padding(0, 3, 0, 3);
+            pnlSaturday.Size = new Size(239, 426);
+            pnlSaturday.TabIndex = 14;
+            pnlSaturday.TasksCount = 0;
+            pnlSaturday.WrapContents = false;
+            pnlSaturday.ActivityAdded += daysPanel_TaskAdded;
+            pnlSaturday.ActivityRemoved += daysPanel_TaskRemoved;
             // 
             // frmMain
             // 
@@ -392,7 +406,7 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(23, 28, 52);
             ClientSize = new Size(1760, 815);
-            Controls.Add(tableLayoutPanel1);
+            Controls.Add(tlpDaysTable);
             Controls.Add(panel1);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -401,8 +415,8 @@
             WindowState = FormWindowState.Maximized;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
+            tlpDaysTable.ResumeLayout(false);
+            tlpDaysTable.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -417,7 +431,7 @@
         private Label lblActivitiesCount;
         private Label label3;
         private Label lblTotalTime;
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tlpDaysTable;
         private Label label2;
         private Label label5;
         private Label label11;
@@ -425,12 +439,12 @@
         private Label label9;
         private Label label8;
         private Label label7;
-        private Controls.DaysPanel daysPanel7;
-        private Controls.DaysPanel daysPanel6;
-        private Controls.DaysPanel daysPanel5;
-        private Controls.DaysPanel daysPanel4;
-        private Controls.DaysPanel daysPanel3;
-        private Controls.DaysPanel daysPanel2;
-        private Controls.DaysPanel daysPanel1;
+        private Controls.DaysPanel pnlSunday;
+        private Controls.DaysPanel pnlMonday;
+        private Controls.DaysPanel pnlTuesday;
+        private Controls.DaysPanel pnlWednesday;
+        private Controls.DaysPanel pnlThursday;
+        private Controls.DaysPanel pnlFriday;
+        private Controls.DaysPanel pnlSaturday;
     }
 }

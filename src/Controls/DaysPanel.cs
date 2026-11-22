@@ -7,24 +7,45 @@ namespace Weekly_Planner.Controls
 {
     public partial class DaysPanel : FlowLayoutPanel
     {
-        private int tasksCount = 0;
+        // Define a constant for the maximum time per day in minutes (24 hours * 60 = 1440 min)
+        private const int MAX_TIME_PER_DAY = 1440;
+        private int _tasksCount = 0;
 
+        /// <summary>
+        /// Get or set the number of tasks in this DaysPanel.
+        /// </summary>
         public int TasksCount
         {
-            get { return tasksCount; }
-            set {
-                // Update the tasksCount field and raise the appropriate event
-                tasksCount = value;
-
-                // Raise the TaskAdded or TaskRemoved event based on the new value
-                if (value > 0)
-                    OnActivityAdded(EventArgs.Empty);
-                else
-                    OnActivityRemoved(EventArgs.Empty);
-
-            }
+            get =>_tasksCount; 
+            // Update the tasksCount field and raise the appropriate event
+            private set => _tasksCount = value;
         }
         
+
+        /// <summary>
+        /// Get the total planned time in minutes for all activities in this DaysPanel.
+        /// </summary>
+        public int TotalPlannedTime
+        {
+            get
+            {
+                int totalTime = 0;
+                foreach (Control control in this.Controls)
+                {
+                    if (control is Note activityNote)
+                    {
+                        totalTime += activityNote.Duration;
+                    }
+                }
+                return totalTime;
+            }
+        }
+
+        /// <summary>
+        /// Get the remaining time in minutes for the day after accounting for all planned activities
+        /// </summary>
+        public int RemainingTime => MAX_TIME_PER_DAY - TotalPlannedTime;
+
         public event EventHandler ActivityAdded;
         public event EventHandler ActivityRemoved;
 
@@ -45,7 +66,13 @@ namespace Weekly_Planner.Controls
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            using frmCreateOrEditActivity frmCreateActivity = new frmCreateOrEditActivity();
+            if(RemainingTime <= 0)
+            {
+                MessageBox.Show("لقد وصلت للحد الأقصى للوقت المخصص اليوم", "المس العشب", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using frmCreateOrEditNote frmCreateActivity = new frmCreateOrEditNote(RemainingTime);
             frmCreateActivity.ActivityCreated += AddActivity;
             frmCreateActivity.ShowDialog();
 
@@ -53,25 +80,26 @@ namespace Weekly_Planner.Controls
 
         public void AddActivity(object? sender, ActivityInfo Activity)
         {
-            this.Controls.Add(new ActivityNote(Activity));
+            this.Controls.Add(new Note(Activity));
             TasksCount++;
 
             // Ensure the "Add New" button is always at the bottom of the panel
             this.Controls.SetChildIndex(btnAddNew, Controls.Count - 1);
-
+            OnActivityAdded(EventArgs.Empty);
         }
 
         //Note :
         //Do this proccess done through event to avoid the circular reference between DaysPanel and ActivityNote.
         //
-        public void RemoveActivity(ActivityNote Note)
+        public void RemoveActivity(Note Note)
         {
-            if (this.Controls.Contains(Note))
-            {
-                this.Controls.Remove(Note);
-                Note.Dispose();
-                TasksCount--;         
-            }
+            if (Note is null || !this.Controls.Contains(Note))
+                return;
+
+            this.Controls.Remove(Note);
+            Note.Dispose();
+            TasksCount--;
+            OnActivityRemoved(EventArgs.Empty);
         }
 
     }

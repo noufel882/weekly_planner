@@ -1,6 +1,6 @@
 ﻿namespace Weekly_Planner.Forms
 {
-    partial class frmCreateOrEditActivity
+    partial class frmCreateOrEditNote
     {
         /// <summary>
         /// Required designer variable.
