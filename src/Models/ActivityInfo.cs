@@ -16,8 +16,5 @@
             Duration = duration;
         }
 
-        public ActivityInfo()
-        {
-        }
     }
 }

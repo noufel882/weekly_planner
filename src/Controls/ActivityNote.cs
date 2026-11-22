@@ -1,14 +1,17 @@
 ﻿#pragma warning disable WFO1000 // Disable the warning for missing XML comments on public members
+using Weekly_Planner.Forms;
 using Weekly_Planner.Models;
 
 namespace Weekly_Planner.Controls
 {
     public partial class ActivityNote : UserControl
     {
+        /// <summary>
+        /// Represents the activity information associated with this note.
+        /// </summary>
+        private readonly ActivityInfo _activityInfo;
 
-        private ActivityInfo _activityInfo;
 
-        
         /// <summary>
         /// get or set the duration of the activity in minutes.
         /// </summary>
@@ -28,7 +31,8 @@ namespace Weekly_Planner.Controls
         public string Description
         {
             get { return _activityInfo.Description; }
-            set {
+            set
+            {
                 _activityInfo.Description = value;
                 lblDescription.Text = value;
             }
@@ -39,7 +43,8 @@ namespace Weekly_Planner.Controls
         public string Title
         {
             get { return _activityInfo.Title; }
-            set {
+            set
+            {
                 _activityInfo.Title = value;
                 lblTitle.Text = value;
             }
@@ -54,7 +59,6 @@ namespace Weekly_Planner.Controls
             Duration = activityInfo.Duration;
         }
 
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (this.Parent is DaysPanel daysPanel)
@@ -63,5 +67,19 @@ namespace Weekly_Planner.Controls
             }
         }
 
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            using(var editForm = new frmCreateOrEditActivity(_activityInfo))
+            {
+                editForm.ShowDialog();
+            }
+
+            
+            // Update the activity note with the edited information
+            Title = _activityInfo.Title;
+            Description = _activityInfo.Description;
+            Duration = _activityInfo.Duration;
+        }
+    
     }
 }

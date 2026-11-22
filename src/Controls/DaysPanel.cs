@@ -45,7 +45,7 @@ namespace Weekly_Planner.Controls
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            using frmCreateActivity frmCreateActivity = new frmCreateActivity();
+            using frmCreateOrEditActivity frmCreateActivity = new frmCreateOrEditActivity();
             frmCreateActivity.ActivityCreated += AddActivity;
             frmCreateActivity.ShowDialog();
 

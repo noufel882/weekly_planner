@@ -57,13 +57,13 @@
             lblTitle.Text = "title";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // lblContent
+            // lblDescription
             // 
             lblDescription.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblDescription.AutoSize = true;
             lblDescription.ForeColor = Color.White;
             lblDescription.Location = new Point(91, 37);
-            lblDescription.Name = "lblContent";
+            lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(72, 25);
             lblDescription.TabIndex = 1;
             lblDescription.Text = "content";
@@ -144,6 +144,7 @@
             btnEdit.Size = new Size(36, 36);
             btnEdit.TabIndex = 3;
             btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
             // panel3
             // 

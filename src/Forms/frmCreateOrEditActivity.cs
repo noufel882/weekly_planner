@@ -25,9 +25,6 @@ namespace Weekly_Planner.Forms
                 else if (_currentMode == Mode.Edit)
                 {
                     this.Text = "تعديل النشاط";
-                    txtTitle.Text = _activityInfo.Title;
-                    txtDescription.Text = _activityInfo.Description;
-                    nudDuration.Value = _activityInfo.Duration;
                 }
             }
         }
@@ -52,7 +49,10 @@ namespace Weekly_Planner.Forms
             InitializeComponent();
             CurrentMode = Mode.Edit;
             _activityInfo = activityInfo;
-            
+            txtTitle.Text = activityInfo.Title;
+            txtDescription.Text = activityInfo.Description;
+            nudDuration.Value = activityInfo.Duration;
+
         }
 
 
@@ -68,19 +68,15 @@ namespace Weekly_Planner.Forms
             if (CurrentMode == Mode.Create)
             {
 
-                _activityInfo = new ActivityInfo
-                {
-                    Title = txtTitle.Text,
-                    Description = txtDescription.Text,
-                    Duration = (int)nudDuration.Value
-                };
+                _activityInfo = new ActivityInfo(txtTitle.Text ,txtDescription.Text, (int)nudDuration.Value);
+            
 
                 OnActivityCreated(_activityInfo);
                 // disable the button to prevent multiple clicks
                 this.btnConfirm.Enabled = false;
             }
 
-            else
+            else// Edit mode
             {
                 _activityInfo.Title = txtTitle.Text;
                 _activityInfo.Description = txtDescription.Text;
@@ -90,11 +86,6 @@ namespace Weekly_Planner.Forms
 
             MessageBox.Show("تمت العملية بنجاح");
             
-        }
-    
-        public ActivityInfo GetActivityInfo()
-        {
-            return _activityInfo;
         }
 
     }
