@@ -64,7 +64,7 @@ namespace Weekly_Planner.Controls
 
         }
 
-        private void Add(ActivityInfo activity)
+        private void Add(ActivityDetails activity)
         {
             var newNote = new Note(activity);
 
@@ -83,7 +83,7 @@ namespace Weekly_Planner.Controls
         {
             var note = (Note)sender!;
 
-            using var frmEditActivity = new frmCreateOrEditActivity(RemainingTime + note.Duration, note.ToActivityInfo());
+            using var frmEditActivity = new frmCreateOrEditActivity(RemainingTime + note.Duration, note.ToActivityDetail());
             
             // If the user canceled the edit operation, exit the method
             if (frmEditActivity.ShowDialog() != DialogResult.OK)

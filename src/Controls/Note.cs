@@ -16,9 +16,9 @@ namespace Weekly_Planner.Controls
         /// </summary>
         public event EventHandler? EditRequest;
 
-        private ActivityInfo _activityInfo;
+        private ActivityDetails _activityInfo;
 
-       
+
         /// <summary>
         /// get or set the duration of the activity in minutes.
         /// </summary>
@@ -57,7 +57,7 @@ namespace Weekly_Planner.Controls
             }
         }
 
-        public Note(ActivityInfo activityInfo)
+        public Note(ActivityDetails activityInfo)
         {
             InitializeComponent();
             _activityInfo = activityInfo;
@@ -80,9 +80,15 @@ namespace Weekly_Planner.Controls
         /// Retrieves the current state of the Note as an ActivityInfo object.
         /// </summary>
         /// <returns></returns>
-        public ActivityInfo ToActivityInfo()
+        public ActivityDetails ToActivityDetail()
         {
-            return new ActivityInfo(this.Title, this.Description, this.Duration);
+            return new ActivityDetails(this.Title, this.Description, this.Duration);
+        }
+
+        private void btnViewDetails_Click(object sender, EventArgs e)
+        {
+            using var detailsForm = new frmViewActivityDetails(this.ToActivityDetail());
+            detailsForm.ShowDialog();
         }
     }
 }

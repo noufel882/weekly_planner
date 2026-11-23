@@ -98,7 +98,7 @@
             // 
             btnConfirm.BackColor = Color.FromArgb(23, 28, 52);
             btnConfirm.ForeColor = Color.White;
-            btnConfirm.Location = new Point(148, 636);
+            btnConfirm.Location = new Point(36, 636);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.Size = new Size(89, 47);
             btnConfirm.TabIndex = 5;
@@ -123,7 +123,7 @@
             // 
             btnClose.BackColor = Color.FromArgb(23, 28, 52);
             btnClose.ForeColor = Color.White;
-            btnClose.Location = new Point(36, 636);
+            btnClose.Location = new Point(148, 636);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(89, 47);
             btnClose.TabIndex = 7;
@@ -131,12 +131,12 @@
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
             // 
-            // frmCreateOrEditNote
+            // frmCreateOrEditActivity
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(23, 28, 52);
-            ClientSize = new Size(608, 714);
+            ClientSize = new Size(604, 710);
             ControlBox = false;
             Controls.Add(btnClose);
             Controls.Add(nudDuration);
@@ -149,7 +149,7 @@
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "frmCreateOrEditNote";
+            Name = "frmCreateOrEditActivity";
             ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;

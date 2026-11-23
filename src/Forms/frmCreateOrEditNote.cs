@@ -13,9 +13,9 @@ namespace Weekly_Planner.Forms
 
         ///<summary> Get or set the current mode of the form , which can be either Create or Edit.</summary>
 
-        private ActivityInfo _Activity;
+        private ActivityDetails _Activity;
 
-        public ActivityInfo Activity => _Activity;
+        public ActivityDetails Activity => _Activity;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="frmCreateOrEditActivity"/> class.
@@ -34,12 +34,12 @@ namespace Weekly_Planner.Forms
         /// </summary>
         /// <param name="AvailableTimeInMinutes">The maximum time available for the activity in minutes.</param>
         /// <param name="activityInfo">An object containing the activity information to edit.</param>
-        public frmCreateOrEditActivity(int AvailableTimeInMinutes, ActivityInfo activityInfo)
+        public frmCreateOrEditActivity(int AvailableTimeInMinutes, ActivityDetails activityInfo)
         {
             InitializeComponent();
             this.Text = "تعديل النشاط";
             _currentMode = Mode.Edit;
-            _Activity = new ActivityInfo(activityInfo.Title, activityInfo.Description, activityInfo.Duration);
+            _Activity = new ActivityDetails(activityInfo.Title, activityInfo.Description, activityInfo.Duration);
             txtTitle.Text = activityInfo.Title;
             txtDescription.Text = activityInfo.Description;
             nudDuration.Value = activityInfo.Duration;
@@ -57,7 +57,7 @@ namespace Weekly_Planner.Forms
 
             if (_currentMode == Mode.Create)
             {
-                _Activity = new ActivityInfo(txtTitle.Text, txtDescription.Text, (int)nudDuration.Value);
+                _Activity = new ActivityDetails(txtTitle.Text, txtDescription.Text, (int)nudDuration.Value);
 
                 DialogResult = DialogResult.OK;
             }
