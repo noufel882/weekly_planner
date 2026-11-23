@@ -9,18 +9,10 @@ namespace Weekly_Planner.Controls
     {
         // Define a constant for the maximum time per day in minutes (24 hours * 60 = 1440 min)
         private const int MAX_TIME_PER_DAY = 1440;
-        private int _tasksCount = 0;
-
         /// <summary>
         /// Get or set the number of tasks in this DaysPanel.
         /// </summary>
-        public int TasksCount
-        {
-            get =>_tasksCount; 
-            // Update the tasksCount field and raise the appropriate event
-            set => _tasksCount = value;
-        }
-        
+        public int TasksCount { get; private set; } = 0;
 
         /// <summary>
         /// Get the total planned time in minutes for all activities in this DaysPanel.
@@ -46,25 +38,7 @@ namespace Weekly_Planner.Controls
         /// </summary>
         public int RemainingTime => MAX_TIME_PER_DAY - TotalPlannedTime;
 
-
-        public event EventHandler ActivityRemoved;
-        private void OnActivityRemoved(EventArgs e)
-        {
-            ActivityRemoved?.Invoke(this, e);
-        }
-
-        public event EventHandler ActivityAdded;
-        private void OnActivityAdded(EventArgs e)
-        {
-            ActivityAdded?.Invoke(this, e);
-        }
-
-        public event EventHandler ActivityEdited;
-        private void OnActivityEdited(EventArgs e)
-        {
-            ActivityEdited?.Invoke(this, e);
-        }
-
+        public event EventHandler? ActivityChanged;
 
         public DaysPanel()
         {
@@ -79,44 +53,58 @@ namespace Weekly_Planner.Controls
                 return;
             }
 
-            using frmCreateOrEditNote frmCreateActivity = new frmCreateOrEditNote(RemainingTime);
-            frmCreateActivity.ActivityCreated += AddActivity;
-            frmCreateActivity.ShowDialog();
+            using var frmCreateActivity = new frmCreateOrEditActivity(RemainingTime);
+
+            // If the user canceled the creation of a new activity, exit the method
+            if (frmCreateActivity.ShowDialog() == DialogResult.Cancel)
+                return;
+            // Otherwise, if the user created a new activity, add it to the pane
+            if (frmCreateActivity.Activity is not null)
+                Add(frmCreateActivity.Activity);
 
         }
 
-        public void AddActivity(object? sender, ActivityInfo Activity)
+        private void Add(ActivityInfo activity)
         {
-            var newNote = new Note(Activity);
+            var newNote = new Note(activity);
 
-            newNote.UserWannaDeletingNote += RemoveActivity;
-            newNote.UserWannaEditingNote += EditActivity;
+            newNote.DeleteRequest += Remove;
+            newNote.EditRequest += Edit;
 
             this.Controls.Add(newNote);
             TasksCount++;
 
             // Ensure the "Add New" button is always at the bottom of the panel
             this.Controls.SetChildIndex(btnAddNew, Controls.Count - 1);
-            OnActivityAdded(EventArgs.Empty);
+            this.ActivityChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public void EditActivity(object? sender, Note note)
-        {      
-            using frmCreateOrEditNote frmEditActivity = new frmCreateOrEditNote(RemainingTime + note.Duration, note.Info);            
-            frmEditActivity.ShowDialog();
-            OnActivityEdited(EventArgs.Empty);
-
-            // Refresh the note to reflect any changes made in the edit form
-            note.Refresh();
-        }
-
-        public void RemoveActivity(object? sender, Note Note)
+        private void Edit(object? sender, EventArgs e)
         {
-            this.Controls.Remove(Note);
-            Note.Dispose();
-            TasksCount--;
-            OnActivityRemoved(EventArgs.Empty);
+            var note = (Note)sender!;
+
+            using var frmEditActivity = new frmCreateOrEditActivity(RemainingTime + note.Duration, note.ToActivityInfo());
+            
+            // If the user canceled the edit operation, exit the method
+            if (frmEditActivity.ShowDialog() != DialogResult.OK)
+                return;
+        
+            //Otherwise, refresh the note to reflect the changes
+            note.Title = frmEditActivity.Activity.Title;
+            note.Description = frmEditActivity.Activity.Description;
+            note.Duration = frmEditActivity.Activity.Duration;
+            // Raise the ActivityChanged event for the DaysPanel
+            this.ActivityChanged?.Invoke(this, EventArgs.Empty);
+
         }
 
+        private void Remove(object? sender, EventArgs e)
+        {
+            var note = (Note)sender!;
+            this.Controls.Remove(note);
+            note.Dispose();
+            TasksCount--;
+            this.ActivityChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

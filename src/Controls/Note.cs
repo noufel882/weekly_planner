@@ -7,29 +7,18 @@ namespace Weekly_Planner.Controls
     public partial class Note : UserControl
     {
         /// <summary>
-        /// Event triggered when the user wants to delete the note. The event passes the associated ActivityInfo as an argument.
+        /// Event triggered when the user wants to delete the note.
         /// </summary>
-        public event EventHandler<Note> UserWannaDeletingNote;
-
-        private void OnUserWannaDeletingNote(Note activityInfo)
-        {
-            UserWannaDeletingNote?.Invoke(this, activityInfo);
-        }
+        public event EventHandler? DeleteRequest;
 
         /// <summary>
-        /// Event triggered when the user wants to edit the note. The event passes the associated ActivityInfo as an argument.
+        /// Event triggered when the user wants to edit the note.
         /// </summary>
-        public event EventHandler<Note> UserWannaEditingNote;
-        private void OnUserWannaEditingNote(Note activityInfo)
-        {
-            UserWannaEditingNote?.Invoke(this, activityInfo);
-        }
+        public event EventHandler? EditRequest;
 
-        private readonly ActivityInfo _activityInfo;
+        private ActivityInfo _activityInfo;
 
-        public ActivityInfo Info => _activityInfo;
-
-
+       
         /// <summary>
         /// get or set the duration of the activity in minutes.
         /// </summary>
@@ -79,21 +68,21 @@ namespace Weekly_Planner.Controls
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            OnUserWannaDeletingNote(this);
+            DeleteRequest?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            OnUserWannaEditingNote(this);
+            EditRequest?.Invoke(this, EventArgs.Empty);
         }
-    
 
-        public override void Refresh()
+        /// <summary>
+        /// Retrieves the current state of the Note as an ActivityInfo object.
+        /// </summary>
+        /// <returns></returns>
+        public ActivityInfo ToActivityInfo()
         {
-            Title = _activityInfo.Title;
-            Description = _activityInfo.Description;
-            Duration = _activityInfo.Duration;
-            base.Refresh();
+            return new ActivityInfo(this.Title, this.Description, this.Duration);
         }
     }
 }

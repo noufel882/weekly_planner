@@ -1,67 +1,45 @@
 ﻿#pragma warning disable WFO1000 // disabled warnings for this file
+using System.Diagnostics.Eventing.Reader;
 using Weekly_Planner.Models;
 
 namespace Weekly_Planner.Forms
 {
-    public partial class frmCreateOrEditNote : Form
+    public partial class frmCreateOrEditActivity : Form
     {
 
-        public enum Mode { Create , Edit}
+        public enum Mode { Create, Edit }
 
         private Mode _currentMode;
 
         ///<summary> Get or set the current mode of the form , which can be either Create or Edit.</summary>
-        public Mode CurrentMode
-        {
-            get { return _currentMode; }
-            set
-            {
-                _currentMode = value;
-                if (_currentMode == Mode.Create)
-                {
-                    this.Text = "إضافة نشاط";
-                }
-                else if (_currentMode == Mode.Edit)
-                {
-                    this.Text = "تعديل النشاط";
-                }
-            }
-        }
-        
-        private ActivityInfo _activityInfo;
+
+        private ActivityInfo _Activity;
+
+        public ActivityInfo Activity => _Activity;
 
         /// <summary>
-        /// The event that is raised when a new activity is created.
-        /// </summary>
-        public event EventHandler<ActivityInfo> ActivityCreated;
-
-        private void OnActivityCreated(ActivityInfo activityInfo)
-        {
-            ActivityCreated?.Invoke(this, activityInfo);
-        }
-
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="frmCreateOrEditNote"/> class.
+        /// Initializes a new instance of the <see cref="frmCreateOrEditActivity"/> class.
         /// </summary>
         /// <param name="AvailableTimeInMinutes">The maximum time available for the activity in minutes.</param>
-        public frmCreateOrEditNote(int AvailableTimeInMinutes)
+        public frmCreateOrEditActivity(int AvailableTimeInMinutes)
         {
             InitializeComponent();
-            CurrentMode = Mode.Create;
+            this.Text = "إضافة نشاط";
+            _currentMode = Mode.Create;
             nudDuration.Maximum = AvailableTimeInMinutes;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="frmCreateOrEditNote"/> class.
+        /// Initializes a new instance of the <see cref="frmCreateOrEditActivity"/> class.
         /// </summary>
         /// <param name="AvailableTimeInMinutes">The maximum time available for the activity in minutes.</param>
         /// <param name="activityInfo">An object containing the activity information to edit.</param>
-        public frmCreateOrEditNote(int AvailableTimeInMinutes,ActivityInfo activityInfo)
+        public frmCreateOrEditActivity(int AvailableTimeInMinutes, ActivityInfo activityInfo)
         {
             InitializeComponent();
-            CurrentMode = Mode.Edit;
-            _activityInfo = activityInfo;
+            this.Text = "تعديل النشاط";
+            _currentMode = Mode.Edit;
+            _Activity = new ActivityInfo(activityInfo.Title, activityInfo.Description, activityInfo.Duration);
             txtTitle.Text = activityInfo.Title;
             txtDescription.Text = activityInfo.Description;
             nudDuration.Value = activityInfo.Duration;
@@ -71,33 +49,36 @@ namespace Weekly_Planner.Forms
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (txtTitle.Text == "")
+            if (string.IsNullOrWhiteSpace(txtTitle.Text))
             {
                 MessageBox.Show("ادخال اسم النشاط");
                 return;
             }
 
-
-            if (CurrentMode == Mode.Create)
+            if (_currentMode == Mode.Create)
             {
-                _activityInfo = new ActivityInfo(txtTitle.Text ,txtDescription.Text, (int)nudDuration.Value);
-            
-                OnActivityCreated(_activityInfo);
-                // disable the button to prevent multiple clicks
-                this.btnConfirm.Visible = false;
+                _Activity = new ActivityInfo(txtTitle.Text, txtDescription.Text, (int)nudDuration.Value);
+
+                DialogResult = DialogResult.OK;
             }
 
-            else// Edit mode
+            // Edit mode
+            else if (_currentMode == Mode.Edit) 
             {
-                _activityInfo.Title = txtTitle.Text;
-                _activityInfo.Description = txtDescription.Text;
-                _activityInfo.Duration = (int)nudDuration.Value;           
+                _Activity.Title = txtTitle.Text;
+                _Activity.Description = txtDescription.Text;
+                _Activity.Duration = (int)nudDuration.Value;
+                DialogResult = DialogResult.OK;
             }
-
-
             MessageBox.Show("تمت العملية بنجاح");
-            
+
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            // Set the DialogResult to Cancel to indicate that the operation was canceled
+            // This will close the form and return control to the calling code
+            this.DialogResult = DialogResult.Cancel;            
+        }
     }
 }

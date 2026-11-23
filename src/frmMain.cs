@@ -49,13 +49,8 @@ namespace Weekly_Planner
             PlanningDays = 0;
         }
 
-        private void daysPanel_NoteAdded(object sender, EventArgs e) => UpdateStatus();
 
-        private void daysPanel_NoteRemoved(object sender, EventArgs e) => UpdateStatus();
-
-        private void daysPanel_NoteEdited(object sender, EventArgs e) => UpdateStatus();
-
-        private void UpdateStatus()
+        private void UpdateStatus(object sender, EventArgs e)
         {
             int plannedDays = 0;
             int totalPlannedTime = 0;
