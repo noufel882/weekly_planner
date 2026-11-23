@@ -207,11 +207,8 @@
             pnlSunday.Padding = new Padding(0, 3, 0, 3);
             pnlSunday.Size = new Size(241, 426);
             pnlSunday.TabIndex = 20;
-            pnlSunday.TasksCount = 0;
             pnlSunday.WrapContents = false;
-            pnlSunday.ActivityRemoved += daysPanel_NoteRemoved;
-            pnlSunday.ActivityAdded += daysPanel_NoteAdded;
-            pnlSunday.ActivityEdited += daysPanel_NoteEdited;
+            pnlSunday.ActivityChanged += UpdateStatus;
             // 
             // pnlMonday
             // 
@@ -223,11 +220,8 @@
             pnlMonday.Padding = new Padding(0, 3, 0, 3);
             pnlMonday.Size = new Size(240, 426);
             pnlMonday.TabIndex = 19;
-            pnlMonday.TasksCount = 0;
             pnlMonday.WrapContents = false;
-            pnlMonday.ActivityRemoved += daysPanel_NoteRemoved;
-            pnlMonday.ActivityAdded += daysPanel_NoteAdded;
-            pnlMonday.ActivityEdited += daysPanel_NoteEdited;
+            pnlMonday.ActivityChanged += UpdateStatus;
             // 
             // pnlTuesday
             // 
@@ -239,11 +233,8 @@
             pnlTuesday.Padding = new Padding(0, 3, 0, 3);
             pnlTuesday.Size = new Size(240, 426);
             pnlTuesday.TabIndex = 18;
-            pnlTuesday.TasksCount = 0;
             pnlTuesday.WrapContents = false;
-            pnlTuesday.ActivityRemoved += daysPanel_NoteRemoved;
-            pnlTuesday.ActivityAdded += daysPanel_NoteAdded;
-            pnlTuesday.ActivityEdited += daysPanel_NoteEdited;
+            pnlTuesday.ActivityChanged += UpdateStatus;
             // 
             // pnlWednesday
             // 
@@ -255,11 +246,8 @@
             pnlWednesday.Padding = new Padding(0, 3, 0, 3);
             pnlWednesday.Size = new Size(240, 426);
             pnlWednesday.TabIndex = 17;
-            pnlWednesday.TasksCount = 0;
             pnlWednesday.WrapContents = false;
-            pnlWednesday.ActivityRemoved += daysPanel_NoteRemoved;
-            pnlWednesday.ActivityAdded += daysPanel_NoteAdded;
-            pnlWednesday.ActivityEdited += daysPanel_NoteEdited;
+            pnlWednesday.ActivityChanged += UpdateStatus;
             // 
             // pnlThursday
             // 
@@ -271,11 +259,8 @@
             pnlThursday.Padding = new Padding(0, 3, 0, 3);
             pnlThursday.Size = new Size(240, 426);
             pnlThursday.TabIndex = 16;
-            pnlThursday.TasksCount = 0;
             pnlThursday.WrapContents = false;
-            pnlThursday.ActivityRemoved += daysPanel_NoteRemoved;
-            pnlThursday.ActivityAdded += daysPanel_NoteAdded;
-            pnlThursday.ActivityEdited += daysPanel_NoteEdited;
+            pnlThursday.ActivityChanged += UpdateStatus;
             // 
             // pnlFriday
             // 
@@ -287,11 +272,8 @@
             pnlFriday.Padding = new Padding(0, 3, 0, 3);
             pnlFriday.Size = new Size(240, 426);
             pnlFriday.TabIndex = 15;
-            pnlFriday.TasksCount = 0;
             pnlFriday.WrapContents = false;
-            pnlFriday.ActivityRemoved += daysPanel_NoteRemoved;
-            pnlFriday.ActivityAdded += daysPanel_NoteAdded;
-            pnlFriday.ActivityEdited += daysPanel_NoteEdited;
+            pnlFriday.ActivityChanged += UpdateStatus;
             // 
             // label11
             // 
@@ -401,11 +383,8 @@
             pnlSaturday.Padding = new Padding(0, 3, 0, 3);
             pnlSaturday.Size = new Size(239, 426);
             pnlSaturday.TabIndex = 14;
-            pnlSaturday.TasksCount = 0;
             pnlSaturday.WrapContents = false;
-            pnlSaturday.ActivityRemoved += daysPanel_NoteRemoved;
-            pnlSaturday.ActivityAdded += daysPanel_NoteAdded;
-            pnlSaturday.ActivityEdited += daysPanel_NoteEdited;
+            pnlSaturday.ActivityChanged += UpdateStatus;
             // 
             // frmMain
             // 

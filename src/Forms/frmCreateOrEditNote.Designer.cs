@@ -1,6 +1,6 @@
 ﻿namespace Weekly_Planner.Forms
 {
-    partial class frmCreateOrEditNote
+    partial class frmCreateOrEditActivity
     {
         /// <summary>
         /// Required designer variable.
@@ -35,6 +35,7 @@
             txtDescription = new RichTextBox();
             btnConfirm = new Button();
             nudDuration = new NumericUpDown();
+            btnClose = new Button();
             ((System.ComponentModel.ISupportInitialize)nudDuration).BeginInit();
             SuspendLayout();
             // 
@@ -97,7 +98,7 @@
             // 
             btnConfirm.BackColor = Color.FromArgb(23, 28, 52);
             btnConfirm.ForeColor = Color.White;
-            btnConfirm.Location = new Point(38, 632);
+            btnConfirm.Location = new Point(148, 636);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.Size = new Size(89, 47);
             btnConfirm.TabIndex = 5;
@@ -118,12 +119,26 @@
             nudDuration.TabIndex = 6;
             nudDuration.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
+            // btnClose
+            // 
+            btnClose.BackColor = Color.FromArgb(23, 28, 52);
+            btnClose.ForeColor = Color.White;
+            btnClose.Location = new Point(36, 636);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(89, 47);
+            btnClose.TabIndex = 7;
+            btnClose.Text = "خروج";
+            btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
+            // 
             // frmCreateOrEditNote
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(23, 28, 52);
             ClientSize = new Size(608, 714);
+            ControlBox = false;
+            Controls.Add(btnClose);
             Controls.Add(nudDuration);
             Controls.Add(btnConfirm);
             Controls.Add(txtDescription);
@@ -132,6 +147,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmCreateOrEditNote";
             ShowIcon = false;
             ShowInTaskbar = false;
@@ -151,5 +168,6 @@
         private RichTextBox txtDescription;
         private Button btnConfirm;
         private NumericUpDown nudDuration;
+        private Button btnClose;
     }
 }
