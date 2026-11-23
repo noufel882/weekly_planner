@@ -84,7 +84,7 @@ namespace Weekly_Planner.Forms
             
                 OnActivityCreated(_activityInfo);
                 // disable the button to prevent multiple clicks
-                this.btnConfirm.Enabled = false;
+                this.btnConfirm.Visible = false;
             }
 
             else// Edit mode
