@@ -408,7 +408,7 @@ namespace Weekly_Planner
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(228, 69);
             btnExport.TabIndex = 3;
-            btnExport.Text = "تصدير";
+            btnExport.Text = "حفظ";
             btnExport.UseVisualStyleBackColor = false;
             btnExport.Click += btnExport_Click;
             // 

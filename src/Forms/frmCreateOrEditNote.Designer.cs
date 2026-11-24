@@ -78,15 +78,17 @@
             // txtTitle
             // 
             txtTitle.BackColor = Color.FromArgb(34, 28, 52);
+            txtTitle.Font = new Font("Tahoma", 12F);
             txtTitle.ForeColor = Color.White;
             txtTitle.Location = new Point(19, 58);
             txtTitle.Name = "txtTitle";
-            txtTitle.Size = new Size(563, 31);
+            txtTitle.Size = new Size(563, 36);
             txtTitle.TabIndex = 3;
             // 
             // txtDescription
             // 
             txtDescription.BackColor = Color.FromArgb(34, 28, 52);
+            txtDescription.Font = new Font("Tahoma", 12F);
             txtDescription.ForeColor = Color.White;
             txtDescription.Location = new Point(19, 172);
             txtDescription.Name = "txtDescription";
@@ -109,13 +111,14 @@
             // nudDuration
             // 
             nudDuration.BackColor = Color.FromArgb(34, 28, 52);
+            nudDuration.Font = new Font("Tahoma", 12F);
             nudDuration.ForeColor = Color.White;
             nudDuration.Increment = new decimal(new int[] { 5, 0, 0, 0 });
             nudDuration.Location = new Point(228, 576);
             nudDuration.Maximum = new decimal(new int[] { 1440, 0, 0, 0 });
             nudDuration.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
             nudDuration.Name = "nudDuration";
-            nudDuration.Size = new Size(180, 31);
+            nudDuration.Size = new Size(180, 36);
             nudDuration.TabIndex = 6;
             nudDuration.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
@@ -129,14 +132,13 @@
             btnClose.TabIndex = 7;
             btnClose.Text = "خروج";
             btnClose.UseVisualStyleBackColor = false;
-            btnClose.Click += btnClose_Click;
             // 
             // frmCreateOrEditActivity
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(23, 28, 52);
-            ClientSize = new Size(604, 710);
+            ClientSize = new Size(600, 706);
             ControlBox = false;
             Controls.Add(btnClose);
             Controls.Add(nudDuration);

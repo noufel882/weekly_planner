@@ -20,7 +20,7 @@ namespace Weekly_Planner.Forms
             InitializeComponent();
             txtTitle.Text = note.Title;
             txtDescription.Text = note.Description;
-            nudDuration.Value = note.Duration;
+            txtDuration.Text = note.Duration.ToString();
         }
 
         private void btnClose_Click(object sender, EventArgs e) => Close();

@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             btnClose = new Button();
-            nudDuration = new NumericUpDown();
             txtDescription = new RichTextBox();
             txtTitle = new TextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)nudDuration).BeginInit();
+            txtDuration = new TextBox();
             SuspendLayout();
             // 
             // btnClose
@@ -50,23 +49,10 @@
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
             // 
-            // nudDuration
-            // 
-            nudDuration.BackColor = Color.FromArgb(34, 28, 52);
-            nudDuration.ForeColor = Color.White;
-            nudDuration.Increment = new decimal(new int[] { 5, 0, 0, 0 });
-            nudDuration.Location = new Point(227, 582);
-            nudDuration.Maximum = new decimal(new int[] { 1440, 0, 0, 0 });
-            nudDuration.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
-            nudDuration.Name = "nudDuration";
-            nudDuration.ReadOnly = true;
-            nudDuration.Size = new Size(180, 31);
-            nudDuration.TabIndex = 14;
-            nudDuration.Value = new decimal(new int[] { 5, 0, 0, 0 });
-            // 
             // txtDescription
             // 
             txtDescription.BackColor = Color.FromArgb(34, 28, 52);
+            txtDescription.Font = new Font("Tahoma", 12F);
             txtDescription.ForeColor = Color.White;
             txtDescription.Location = new Point(18, 178);
             txtDescription.Name = "txtDescription";
@@ -78,11 +64,12 @@
             // txtTitle
             // 
             txtTitle.BackColor = Color.FromArgb(34, 28, 52);
+            txtTitle.Font = new Font("Tahoma", 12F);
             txtTitle.ForeColor = Color.White;
             txtTitle.Location = new Point(18, 64);
             txtTitle.Name = "txtTitle";
             txtTitle.ReadOnly = true;
-            txtTitle.Size = new Size(563, 31);
+            txtTitle.Size = new Size(563, 36);
             txtTitle.TabIndex = 11;
             // 
             // label3
@@ -121,15 +108,26 @@
             label1.TabIndex = 8;
             label1.Text = "العنوان :  ";
             // 
+            // txtDuration
+            // 
+            txtDuration.BackColor = Color.FromArgb(34, 28, 52);
+            txtDuration.Font = new Font("Tahoma", 12F);
+            txtDuration.ForeColor = Color.White;
+            txtDuration.Location = new Point(227, 582);
+            txtDuration.Name = "txtDuration";
+            txtDuration.ReadOnly = true;
+            txtDuration.Size = new Size(180, 36);
+            txtDuration.TabIndex = 16;
+            // 
             // frmViewActivityDetails
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(23, 28, 52);
-            ClientSize = new Size(600, 706);
+            ClientSize = new Size(596, 702);
             ControlBox = false;
+            Controls.Add(txtDuration);
             Controls.Add(btnClose);
-            Controls.Add(nudDuration);
             Controls.Add(txtDescription);
             Controls.Add(txtTitle);
             Controls.Add(label3);
@@ -142,7 +140,6 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "تفاصيل النشاط";
-            ((System.ComponentModel.ISupportInitialize)nudDuration).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -150,11 +147,11 @@
         #endregion
 
         private Button btnClose;
-        private NumericUpDown nudDuration;
         private RichTextBox txtDescription;
         private TextBox txtTitle;
         private Label label3;
         private Label label2;
         private Label label1;
+        private TextBox txtDuration;
     }
 }
