@@ -48,13 +48,13 @@ namespace Weekly_Planner
             label7 = new Label();
             label2 = new Label();
             label5 = new Label();
-            pnlSunday = new DaysPanel(DayName.Sun);
-            pnlMonday = new DaysPanel(DayName.Mon);
-            pnlTuesday = new DaysPanel(DayName.Tue);
-            pnlWednesday = new DaysPanel(DayName.Wed);
-            pnlThursday = new DaysPanel(DayName.Thu);
-            pnlFriday = new DaysPanel(DayName.Fri);
-            pnlSaturday = new DaysPanel(DayName.Sat);
+            pnlSaturday = new DaysPanel();
+            pnlFriday = new DaysPanel();
+            pnlThursday = new DaysPanel();
+            pnlWednesday = new DaysPanel();
+            pnlTuesday = new DaysPanel();
+            pnlMonday = new DaysPanel();
+            pnlSunday = new DaysPanel();
             btnExport = new Button();
             btnImport = new Button();
             panel1.SuspendLayout();
@@ -180,12 +180,6 @@ namespace Weekly_Planner
             tlpDaysTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
             tlpDaysTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
             tlpDaysTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857161F));
-            tlpDaysTable.Controls.Add(pnlSunday, 6, 1);
-            tlpDaysTable.Controls.Add(pnlMonday, 5, 1);
-            tlpDaysTable.Controls.Add(pnlTuesday, 4, 1);
-            tlpDaysTable.Controls.Add(pnlWednesday, 3, 1);
-            tlpDaysTable.Controls.Add(pnlThursday, 2, 1);
-            tlpDaysTable.Controls.Add(pnlFriday, 1, 1);
             tlpDaysTable.Controls.Add(label11, 5, 0);
             tlpDaysTable.Controls.Add(label10, 4, 0);
             tlpDaysTable.Controls.Add(label9, 3, 0);
@@ -194,6 +188,12 @@ namespace Weekly_Planner
             tlpDaysTable.Controls.Add(label2, 6, 0);
             tlpDaysTable.Controls.Add(label5, 0, 0);
             tlpDaysTable.Controls.Add(pnlSaturday, 0, 1);
+            tlpDaysTable.Controls.Add(pnlFriday, 1, 1);
+            tlpDaysTable.Controls.Add(pnlThursday, 2, 1);
+            tlpDaysTable.Controls.Add(pnlWednesday, 3, 1);
+            tlpDaysTable.Controls.Add(pnlTuesday, 4, 1);
+            tlpDaysTable.Controls.Add(pnlMonday, 5, 1);
+            tlpDaysTable.Controls.Add(pnlSunday, 6, 1);
             tlpDaysTable.Location = new Point(16, 286);
             tlpDaysTable.Name = "tlpDaysTable";
             tlpDaysTable.RowCount = 2;
@@ -201,84 +201,6 @@ namespace Weekly_Planner
             tlpDaysTable.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
             tlpDaysTable.Size = new Size(1730, 511);
             tlpDaysTable.TabIndex = 2;
-            // 
-            // pnlSunday
-            // 
-            pnlSunday.AutoScroll = true;
-            pnlSunday.Dock = DockStyle.Fill;
-            pnlSunday.FlowDirection = FlowDirection.TopDown;
-            pnlSunday.Location = new Point(1485, 81);
-            pnlSunday.Name = "pnlSunday";
-            pnlSunday.Padding = new Padding(0, 3, 0, 3);
-            pnlSunday.Size = new Size(241, 426);
-            pnlSunday.TabIndex = 20;
-            pnlSunday.WrapContents = false;
-            pnlSunday.ActivityChanged += UpdateStatus;
-            // 
-            // pnlMonday
-            // 
-            pnlMonday.AutoScroll = true;
-            pnlMonday.Dock = DockStyle.Fill;
-            pnlMonday.FlowDirection = FlowDirection.TopDown;
-            pnlMonday.Location = new Point(1238, 81);
-            pnlMonday.Name = "pnlMonday";
-            pnlMonday.Padding = new Padding(0, 3, 0, 3);
-            pnlMonday.Size = new Size(240, 426);
-            pnlMonday.TabIndex = 19;
-            pnlMonday.WrapContents = false;
-            pnlMonday.ActivityChanged += UpdateStatus;
-            // 
-            // pnlTuesday
-            // 
-            pnlTuesday.AutoScroll = true;
-            pnlTuesday.Dock = DockStyle.Fill;
-            pnlTuesday.FlowDirection = FlowDirection.TopDown;
-            pnlTuesday.Location = new Point(991, 81);
-            pnlTuesday.Name = "pnlTuesday";
-            pnlTuesday.Padding = new Padding(0, 3, 0, 3);
-            pnlTuesday.Size = new Size(240, 426);
-            pnlTuesday.TabIndex = 18;
-            pnlTuesday.WrapContents = false;
-            pnlTuesday.ActivityChanged += UpdateStatus;
-            // 
-            // pnlWednesday
-            // 
-            pnlWednesday.AutoScroll = true;
-            pnlWednesday.Dock = DockStyle.Fill;
-            pnlWednesday.FlowDirection = FlowDirection.TopDown;
-            pnlWednesday.Location = new Point(744, 81);
-            pnlWednesday.Name = "pnlWednesday";
-            pnlWednesday.Padding = new Padding(0, 3, 0, 3);
-            pnlWednesday.Size = new Size(240, 426);
-            pnlWednesday.TabIndex = 17;
-            pnlWednesday.WrapContents = false;
-            pnlWednesday.ActivityChanged += UpdateStatus;
-            // 
-            // pnlThursday
-            // 
-            pnlThursday.AutoScroll = true;
-            pnlThursday.Dock = DockStyle.Fill;
-            pnlThursday.FlowDirection = FlowDirection.TopDown;
-            pnlThursday.Location = new Point(497, 81);
-            pnlThursday.Name = "pnlThursday";
-            pnlThursday.Padding = new Padding(0, 3, 0, 3);
-            pnlThursday.Size = new Size(240, 426);
-            pnlThursday.TabIndex = 16;
-            pnlThursday.WrapContents = false;
-            pnlThursday.ActivityChanged += UpdateStatus;
-            // 
-            // pnlFriday
-            // 
-            pnlFriday.AutoScroll = true;
-            pnlFriday.Dock = DockStyle.Fill;
-            pnlFriday.FlowDirection = FlowDirection.TopDown;
-            pnlFriday.Location = new Point(250, 81);
-            pnlFriday.Name = "pnlFriday";
-            pnlFriday.Padding = new Padding(0, 3, 0, 3);
-            pnlFriday.Size = new Size(240, 426);
-            pnlFriday.TabIndex = 15;
-            pnlFriday.WrapContents = false;
-            pnlFriday.ActivityChanged += UpdateStatus;
             // 
             // label11
             // 
@@ -381,6 +303,7 @@ namespace Weekly_Planner
             // pnlSaturday
             // 
             pnlSaturday.AutoScroll = true;
+            pnlSaturday.DayName = DayName.Sat;
             pnlSaturday.Dock = DockStyle.Fill;
             pnlSaturday.FlowDirection = FlowDirection.TopDown;
             pnlSaturday.Location = new Point(4, 81);
@@ -390,6 +313,90 @@ namespace Weekly_Planner
             pnlSaturday.TabIndex = 14;
             pnlSaturday.WrapContents = false;
             pnlSaturday.ActivityChanged += UpdateStatus;
+            // 
+            // pnlFriday
+            // 
+            pnlFriday.AutoScroll = true;
+            pnlFriday.DayName = DayName.Fri;
+            pnlFriday.Dock = DockStyle.Fill;
+            pnlFriday.FlowDirection = FlowDirection.TopDown;
+            pnlFriday.Location = new Point(250, 81);
+            pnlFriday.Name = "pnlFriday";
+            pnlFriday.Padding = new Padding(0, 3, 0, 3);
+            pnlFriday.Size = new Size(240, 426);
+            pnlFriday.TabIndex = 15;
+            pnlFriday.WrapContents = false;
+            pnlFriday.ActivityChanged += UpdateStatus;
+            // 
+            // pnlThursday
+            // 
+            pnlThursday.AutoScroll = true;
+            pnlThursday.DayName = DayName.Thu;
+            pnlThursday.Dock = DockStyle.Fill;
+            pnlThursday.FlowDirection = FlowDirection.TopDown;
+            pnlThursday.Location = new Point(497, 81);
+            pnlThursday.Name = "pnlThursday";
+            pnlThursday.Padding = new Padding(0, 3, 0, 3);
+            pnlThursday.Size = new Size(240, 426);
+            pnlThursday.TabIndex = 16;
+            pnlThursday.WrapContents = false;
+            pnlThursday.ActivityChanged += UpdateStatus;
+            // 
+            // pnlWednesday
+            // 
+            pnlWednesday.AutoScroll = true;
+            pnlWednesday.DayName = DayName.Wed;
+            pnlWednesday.Dock = DockStyle.Fill;
+            pnlWednesday.FlowDirection = FlowDirection.TopDown;
+            pnlWednesday.Location = new Point(744, 81);
+            pnlWednesday.Name = "pnlWednesday";
+            pnlWednesday.Padding = new Padding(0, 3, 0, 3);
+            pnlWednesday.Size = new Size(240, 426);
+            pnlWednesday.TabIndex = 17;
+            pnlWednesday.WrapContents = false;
+            pnlWednesday.ActivityChanged += UpdateStatus;
+            // 
+            // pnlTuesday
+            // 
+            pnlTuesday.AutoScroll = true;
+            pnlTuesday.DayName = DayName.Tue;
+            pnlTuesday.Dock = DockStyle.Fill;
+            pnlTuesday.FlowDirection = FlowDirection.TopDown;
+            pnlTuesday.Location = new Point(991, 81);
+            pnlTuesday.Name = "pnlTuesday";
+            pnlTuesday.Padding = new Padding(0, 3, 0, 3);
+            pnlTuesday.Size = new Size(240, 426);
+            pnlTuesday.TabIndex = 18;
+            pnlTuesday.WrapContents = false;
+            pnlTuesday.ActivityChanged += UpdateStatus;
+            // 
+            // pnlMonday
+            // 
+            pnlMonday.AutoScroll = true;
+            pnlMonday.DayName = DayName.Mon;
+            pnlMonday.Dock = DockStyle.Fill;
+            pnlMonday.FlowDirection = FlowDirection.TopDown;
+            pnlMonday.Location = new Point(1238, 81);
+            pnlMonday.Name = "pnlMonday";
+            pnlMonday.Padding = new Padding(0, 3, 0, 3);
+            pnlMonday.Size = new Size(240, 426);
+            pnlMonday.TabIndex = 19;
+            pnlMonday.WrapContents = false;
+            pnlMonday.ActivityChanged += UpdateStatus;
+            // 
+            // pnlSunday
+            // 
+            pnlSunday.AutoScroll = true;
+            pnlSunday.DayName = DayName.Sun;
+            pnlSunday.Dock = DockStyle.Fill;
+            pnlSunday.FlowDirection = FlowDirection.TopDown;
+            pnlSunday.Location = new Point(1485, 81);
+            pnlSunday.Name = "pnlSunday";
+            pnlSunday.Padding = new Padding(0, 3, 0, 3);
+            pnlSunday.Size = new Size(241, 426);
+            pnlSunday.TabIndex = 20;
+            pnlSunday.WrapContents = false;
+            pnlSunday.ActivityChanged += UpdateStatus;
             // 
             // btnExport
             // 
@@ -415,6 +422,7 @@ namespace Weekly_Planner
             btnImport.TabIndex = 4;
             btnImport.Text = "إستيراد";
             btnImport.UseVisualStyleBackColor = false;
+            btnImport.Click += btnImport_Click;
             // 
             // frmMain
             // 
@@ -457,14 +465,15 @@ namespace Weekly_Planner
         private Label label9;
         private Label label8;
         private Label label7;
-        private Controls.DaysPanel pnlSunday;
-        private Controls.DaysPanel pnlMonday;
-        private Controls.DaysPanel pnlTuesday;
-        private Controls.DaysPanel pnlWednesday;
-        private Controls.DaysPanel pnlThursday;
-        private Controls.DaysPanel pnlFriday;
-        private Controls.DaysPanel pnlSaturday;
+
         private Button btnExport;
         private Button btnImport;
+        private DaysPanel pnlSaturday;
+        private DaysPanel pnlFriday;
+        private DaysPanel pnlThursday;
+        private DaysPanel pnlWednesday;
+        private DaysPanel pnlTuesday;
+        private DaysPanel pnlMonday;
+        private DaysPanel pnlSunday;
     }
 }

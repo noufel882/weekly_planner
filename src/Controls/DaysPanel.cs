@@ -1,5 +1,6 @@
-﻿#pragma warning disable WFO1000 // Disable the warning for the file
+﻿ // Disable the warning for the file
 
+using System.ComponentModel;
 using Weekly_Planner.Forms;
 using Weekly_Planner.Models;
 namespace Weekly_Planner.Controls
@@ -39,12 +40,13 @@ namespace Weekly_Planner.Controls
 
         public event EventHandler? ActivityChanged;
 
-        public DayName DayName { get; private set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public DayName DayName { get; set; }
 
-        public DaysPanel(DayName name)
+        public DaysPanel()
         {
             InitializeComponent();
-            DayName = name;
+            
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
@@ -109,7 +111,7 @@ namespace Weekly_Planner.Controls
             this.ActivityChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public Weekly_Planner.Models.PlannerDay ToPlannerDay()
+        public PlannerDay ToPlannerDay()
         {
             var activities = new List<ActivityDetails>();
             foreach (var item in this.Controls)
@@ -120,6 +122,14 @@ namespace Weekly_Planner.Controls
                 }
             }
             return new(this.DayName,activities.ToArray());
+        }
+    
+        public void Load(PlannerDay day)
+        {
+            foreach(var activity in day.ActivitiesList)
+            {
+                Add(activity);
+            }
         }
     }
 }

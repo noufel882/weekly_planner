@@ -81,7 +81,8 @@ namespace Weekly_Planner
         private void btnExport_Click(object sender, EventArgs e)
         {
             using SaveFileDialog dialog = new();
-            dialog.Title = "Export Activities";
+            dialog.Title = "Export Weekly Planner";
+            dialog.FileName = "WeeklyPlanner.json";
             dialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
             dialog.DefaultExt = "json";
             dialog.AddExtension = true;
@@ -105,10 +106,66 @@ namespace Weekly_Planner
 
             };
 
-            ActivityStorage.Export(filepath,days);
+            ActivityStorage.Export(filepath, days);
         }
 
-        
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            using OpenFileDialog dialog = new();
+            dialog.Title = "Import Weekly Planner";
+            dialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
+            dialog.DefaultExt = "json";
+            dialog.AddExtension = true;
+            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            dialog.CheckPathExists = true;
 
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            var filepath = dialog.FileName;
+            PlannerDay[] days = ActivityStorage.Import(filepath)!;
+
+            this.SuspendLayout();
+
+            foreach (var day in days)
+            {
+               
+                switch (day.DayName)
+                {
+                    case DayName.Sun:
+                        pnlSunday.Load(day);
+                        break;
+
+                    case DayName.Mon:
+                        pnlMonday.Load(day);
+                        break;
+
+                    case DayName.Tue:
+                        pnlTuesday.Load(day);
+                        break;
+
+                    case DayName.Wed:
+                        pnlWednesday.Load(day);
+                        break;
+
+                    case DayName.Thu:
+                        pnlThursday.Load(day);
+                        break;
+
+                    case DayName.Fri:
+                        pnlFriday.Load(day);
+                        break;
+
+                    case DayName.Sat:
+                        pnlSaturday.Load(day);
+                        break;
+                }
+            }
+
+            this.ResumeLayout(false);
+            this.PerformLayout();
+        }
+
+       
     }
 }
