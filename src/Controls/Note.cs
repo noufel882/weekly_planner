@@ -1,6 +1,7 @@
 ﻿#pragma warning disable WFO1000 // Disable the warning for missing XML comments on public members
 using Weekly_Planner.Forms;
 using Weekly_Planner.Models;
+using Weekly_Planner.Properties;
 
 namespace Weekly_Planner.Controls
 {
@@ -57,6 +58,10 @@ namespace Weekly_Planner.Controls
             }
         }
 
+        private int _expandedHeight;
+        
+        private bool _isCollapse = false;
+
         public Note(ActivityDetails activityInfo)
         {
             InitializeComponent();
@@ -64,6 +69,7 @@ namespace Weekly_Planner.Controls
             Title = activityInfo.Title;
             Description = activityInfo.Description;
             Duration = activityInfo.Duration;
+            _expandedHeight = this.Height;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -89,6 +95,29 @@ namespace Weekly_Planner.Controls
         {
             using var detailsForm = new frmViewActivityDetails(this.ToActivityDetail());
             detailsForm.ShowDialog();
+        }
+
+        private void btnToggleNote_Click(object sender, EventArgs e)
+        {
+            if (_isCollapse)
+                Expand();
+            else
+                Collapse();
+
+            _isCollapse = !_isCollapse;
+
+        }
+
+        private void Expand()
+        {
+            btnToggleNote.Image = Resources.arrow_down_36;
+            this.Height = _expandedHeight;
+        }
+
+        private void Collapse()
+        {
+            btnToggleNote.Image = Resources.arrow_up_36;
+            this.Height = pnlHead.Bottom;
         }
     }
 }
