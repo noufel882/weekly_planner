@@ -1,6 +1,8 @@
 #pragma warning disable WFO1000 // disabled warnings for this file
 
 using Weekly_Planner.Controls;
+using Weekly_Planner.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Weekly_Planner
 {
@@ -75,6 +77,38 @@ namespace Weekly_Planner
             TasksCount = taskCount;
 
         }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            using SaveFileDialog dialog = new();
+            dialog.Title = "Export Activities";
+            dialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
+            dialog.DefaultExt = "json";
+            dialog.AddExtension = true;
+            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            dialog.OverwritePrompt = true;
+            dialog.CheckPathExists = true;
+
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            var filepath = dialog.FileName;
+            PlannerDay[] days =
+            {
+                pnlSunday.ToPlannerDay(),
+                pnlMonday.ToPlannerDay(),
+                pnlTuesday.ToPlannerDay(),
+                pnlWednesday.ToPlannerDay(),
+                pnlThursday.ToPlannerDay(),
+                pnlFriday.ToPlannerDay(),
+                pnlSaturday.ToPlannerDay(),
+
+            };
+
+            ActivityStorage.Export(filepath,days);
+        }
+
+        
 
     }
 }

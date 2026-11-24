@@ -2,7 +2,6 @@
 
 using Weekly_Planner.Forms;
 using Weekly_Planner.Models;
-
 namespace Weekly_Planner.Controls
 {
     public partial class DaysPanel : FlowLayoutPanel
@@ -40,9 +39,12 @@ namespace Weekly_Planner.Controls
 
         public event EventHandler? ActivityChanged;
 
-        public DaysPanel()
+        public DayName DayName { get; private set; }
+
+        public DaysPanel(DayName name)
         {
             InitializeComponent();
+            DayName = name;
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
@@ -105,6 +107,19 @@ namespace Weekly_Planner.Controls
             note.Dispose();
             TasksCount--;
             this.ActivityChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public Weekly_Planner.Models.PlannerDay ToPlannerDay()
+        {
+            var activities = new List<ActivityDetails>();
+            foreach (var item in this.Controls)
+            {
+                if(item is Note note)
+                {
+                    activities.Add(note.ToActivityDetail());
+                }
+            }
+            return new(this.DayName,activities.ToArray());
         }
     }
 }

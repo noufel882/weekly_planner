@@ -1,4 +1,7 @@
-﻿namespace Weekly_Planner
+﻿using Weekly_Planner.Controls;
+using Weekly_Planner.Models;
+
+namespace Weekly_Planner
 {
     partial class frmMain
     {
@@ -38,12 +41,6 @@
             label3 = new Label();
             lblTotalTime = new Label();
             tlpDaysTable = new TableLayoutPanel();
-            pnlSunday = new Weekly_Planner.Controls.DaysPanel();
-            pnlMonday = new Weekly_Planner.Controls.DaysPanel();
-            pnlTuesday = new Weekly_Planner.Controls.DaysPanel();
-            pnlWednesday = new Weekly_Planner.Controls.DaysPanel();
-            pnlThursday = new Weekly_Planner.Controls.DaysPanel();
-            pnlFriday = new Weekly_Planner.Controls.DaysPanel();
             label11 = new Label();
             label10 = new Label();
             label9 = new Label();
@@ -51,7 +48,15 @@
             label7 = new Label();
             label2 = new Label();
             label5 = new Label();
-            pnlSaturday = new Weekly_Planner.Controls.DaysPanel();
+            pnlSunday = new DaysPanel(DayName.Sun);
+            pnlMonday = new DaysPanel(DayName.Mon);
+            pnlTuesday = new DaysPanel(DayName.Tue);
+            pnlWednesday = new DaysPanel(DayName.Wed);
+            pnlThursday = new DaysPanel(DayName.Thu);
+            pnlFriday = new DaysPanel(DayName.Fri);
+            pnlSaturday = new DaysPanel(DayName.Sat);
+            btnExport = new Button();
+            btnImport = new Button();
             panel1.SuspendLayout();
             tlpDaysTable.SuspendLayout();
             SuspendLayout();
@@ -386,12 +391,39 @@
             pnlSaturday.WrapContents = false;
             pnlSaturday.ActivityChanged += UpdateStatus;
             // 
+            // btnExport
+            // 
+            btnExport.BackColor = Color.FromArgb(34, 28, 52);
+            btnExport.Font = new Font("Tahoma", 12F, FontStyle.Bold);
+            btnExport.ForeColor = Color.Gray;
+            btnExport.Location = new Point(41, 19);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(228, 69);
+            btnExport.TabIndex = 3;
+            btnExport.Text = "تصدير";
+            btnExport.UseVisualStyleBackColor = false;
+            btnExport.Click += btnExport_Click;
+            // 
+            // btnImport
+            // 
+            btnImport.BackColor = Color.FromArgb(34, 28, 52);
+            btnImport.Font = new Font("Tahoma", 12F, FontStyle.Bold);
+            btnImport.ForeColor = Color.Gray;
+            btnImport.Location = new Point(332, 19);
+            btnImport.Name = "btnImport";
+            btnImport.Size = new Size(228, 69);
+            btnImport.TabIndex = 4;
+            btnImport.Text = "إستيراد";
+            btnImport.UseVisualStyleBackColor = false;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(23, 28, 52);
             ClientSize = new Size(1760, 815);
+            Controls.Add(btnImport);
+            Controls.Add(btnExport);
             Controls.Add(tlpDaysTable);
             Controls.Add(panel1);
             Controls.Add(label1);
@@ -432,5 +464,7 @@
         private Controls.DaysPanel pnlThursday;
         private Controls.DaysPanel pnlFriday;
         private Controls.DaysPanel pnlSaturday;
+        private Button btnExport;
+        private Button btnImport;
     }
 }
