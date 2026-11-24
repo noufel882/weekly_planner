@@ -5,7 +5,7 @@
         /// <summary>
         /// Get or Set the Day Lists' tasks
         /// </summary>            
-        public DayName DayName { get; private set; } 
+        public DayName DayName { get; set; } 
         public List<ActivityDetails> ActivitiesList { get; set; }
 
         public PlannerDay()

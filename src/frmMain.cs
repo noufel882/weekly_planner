@@ -125,6 +125,7 @@ namespace Weekly_Planner
             var filepath = dialog.FileName;
             PlannerDay[] days = ActivityStorage.Import(filepath)!;
 
+
             this.SuspendLayout();
 
             foreach (var day in days)
