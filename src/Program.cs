@@ -1,9 +1,12 @@
 namespace Weekly_Planner
 {
+    /// <summary>
+    /// Provides the application entry point and initializes the Windows Forms runtime.
+    /// </summary>
     internal static class Program
     {
         /// <summary>
-        ///  The main entry point for the application.
+        /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()

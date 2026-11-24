@@ -4,17 +4,25 @@ using Weekly_Planner.Models;
 
 namespace Weekly_Planner.Forms
 {
+    /// <summary>
+    /// Provides a form for creating or editing a planned activity.
+    /// </summary>
     public partial class frmCreateOrEditActivity : Form
     {
 
+        /// <summary>
+        /// Specifies whether the form creates or edits an activity.
+        /// </summary>
         public enum Mode { Create, Edit }
 
         private Mode _currentMode;
 
-        ///<summary> Get or set the current mode of the form , which can be either Create or Edit.</summary>
-
         private ActivityDetails _Activity;
 
+        /// <summary>
+        /// Gets the activity confirmed by the form.
+        /// </summary>
+        /// <value>The created or edited activity, or <see langword="null"/> before confirmation.</value>
         public ActivityDetails Activity => _Activity;
 
         /// <summary>
@@ -26,6 +34,7 @@ namespace Weekly_Planner.Forms
             InitializeComponent();
             this.Text = "إضافة نشاط";
             _currentMode = Mode.Create;
+            _Activity = new ActivityDetails(string.Empty, string.Empty, 0);
             nudDuration.Maximum = AvailableTimeInMinutes;
         }
 
@@ -74,11 +83,5 @@ namespace Weekly_Planner.Forms
 
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            // Set the DialogResult to Cancel to indicate that the operation was canceled
-            // This will close the form and return control to the calling code
-            this.DialogResult = DialogResult.Cancel;            
-        }
     }
 }

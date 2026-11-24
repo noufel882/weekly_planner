@@ -5,18 +5,23 @@ using Weekly_Planner.Forms;
 using Weekly_Planner.Models;
 namespace Weekly_Planner.Controls
 {
+    /// <summary>
+    /// Hosts and manages the activity notes for one day of the week.
+    /// </summary>
     public partial class DaysPanel : FlowLayoutPanel
     {
         // Define a constant for the maximum time per day in minutes (24 hours * 60 = 1440 min)
         private const int MAX_TIME_PER_DAY = 1440;
         /// <summary>
-        /// Get or set the number of tasks in this DaysPanel.
+        /// Gets or sets the number of tasks in this day panel.
         /// </summary>
+        /// <value>The number of activity notes.</value>
         public int TasksCount { get; private set; } = 0;
 
         /// <summary>
-        /// Get the total planned time in minutes for all activities in this DaysPanel.
+        /// Gets the total planned time in minutes for all activities in this day panel.
         /// </summary>
+        /// <value>The sum of all activity durations.</value>
         public int TotalPlannedTime
         {
             get
@@ -34,21 +39,37 @@ namespace Weekly_Planner.Controls
         }
 
         /// <summary>
-        /// Get the remaining time in minutes for the day after accounting for all planned activities
+        /// Gets the remaining time in minutes after accounting for all planned activities.
         /// </summary>
+        /// <value>A value between zero and the maximum minutes in a day.</value>
         public int RemainingTime => MAX_TIME_PER_DAY - TotalPlannedTime;
 
+        /// <summary>
+        /// Occurs after an activity is added, edited, removed, or loaded.
+        /// </summary>
         public event EventHandler? ActivityChanged;
 
+        /// <summary>
+        /// Gets or sets the day represented by this panel.
+        /// </summary>
+        /// <value>The day name.</value>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DayName DayName { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DaysPanel"/> class.
+        /// </summary>
         public DaysPanel()
         {
             InitializeComponent();
             
         }
 
+        /// <summary>
+        /// Opens the activity creation form and adds a valid activity to the panel.
+        /// </summary>
+        /// <param name="sender">The add button that raised the event.</param>
+        /// <param name="e">The event data.</param>
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             if(RemainingTime <= 0)
@@ -68,6 +89,10 @@ namespace Weekly_Planner.Controls
 
         }
 
+        /// <summary>
+        /// Creates and attaches a note for an activity.
+        /// </summary>
+        /// <param name="activity">The activity to add.</param>
         private void Add(ActivityDetails activity)
         {
             var newNote = new Note(activity);
@@ -83,6 +108,11 @@ namespace Weekly_Planner.Controls
             this.ActivityChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Opens the edit form and applies the submitted changes to an activity note.
+        /// </summary>
+        /// <param name="sender">The note requesting an edit.</param>
+        /// <param name="e">The event data.</param>
         private void Edit(object? sender, EventArgs e)
         {
             var note = (Note)sender!;
@@ -102,6 +132,11 @@ namespace Weekly_Planner.Controls
 
         }
 
+        /// <summary>
+        /// Removes an activity note from the panel.
+        /// </summary>
+        /// <param name="sender">The note requesting removal.</param>
+        /// <param name="e">The event data.</param>
         private void Remove(object? sender, EventArgs e)
         {
             var note = (Note)sender!;
@@ -111,6 +146,10 @@ namespace Weekly_Planner.Controls
             this.ActivityChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Converts the panel's current notes into a serializable day plan.
+        /// </summary>
+        /// <returns>A <see cref="PlannerDay"/> containing the panel's activities.</returns>
         public PlannerDay ToPlannerDay()
         {
             var activities = new List<ActivityDetails>();
@@ -124,6 +163,10 @@ namespace Weekly_Planner.Controls
             return new(this.DayName,activities.ToArray());
         }
     
+        /// <summary>
+        /// Adds all activities from a serialized day plan to this panel.
+        /// </summary>
+        /// <param name="day">The day plan to load.</param>
         public void Load(PlannerDay day)
         {
             foreach(var activity in day.ActivitiesList)

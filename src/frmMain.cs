@@ -6,12 +6,19 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Weekly_Planner
 {
+    /// <summary>
+    /// Represents the main weekly planner window and coordinates its day panels and summary values.
+    /// </summary>
     public partial class frmMain : Form
     {
         private int _taskCount = 0;
         private int _totalPlannedTime = 0;
         private int _plannedDays = 0;
 
+        /// <summary>
+        /// Gets or sets the total number of activities across all planned days.
+        /// </summary>
+        /// <value>The number of activities.</value>
         public int TasksCount
         {
             get => _taskCount;
@@ -21,6 +28,10 @@ namespace Weekly_Planner
                 lblActivitiesCount.Text = _taskCount.ToString();
             }
         }
+        /// <summary>
+        /// Gets or sets the number of days that contain at least one activity.
+        /// </summary>
+        /// <value>The number of planned days, displayed as part of a seven-day week.</value>
         public int PlanningDays
         {
             get => _plannedDays;
@@ -31,7 +42,10 @@ namespace Weekly_Planner
             }
         }
 
-        ///<summary> Gets or sets the total planned time in minutes </summary>
+        /// <summary>
+        /// Gets or sets the total planned time in minutes.
+        /// </summary>
+        /// <value>The total planned duration formatted and displayed by the main form.</value>
         public int TotalPlannedTime
         {
             get => _totalPlannedTime;
@@ -43,6 +57,9 @@ namespace Weekly_Planner
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="frmMain"/> class.
+        /// </summary>
         public frmMain()
         {
             InitializeComponent();
@@ -52,6 +69,11 @@ namespace Weekly_Planner
         }
 
 
+        /// <summary>
+        /// Recalculates the summary displayed in the main window.
+        /// </summary>
+        /// <param name="sender">The object that raised the event.</param>
+        /// <param name="e">The event data.</param>
         private void UpdateStatus(object sender, EventArgs e)
         {
             int plannedDays = 0;
@@ -78,6 +100,11 @@ namespace Weekly_Planner
 
         }
 
+        /// <summary>
+        /// Prompts the user to choose a JSON file and exports all day plans.
+        /// </summary>
+        /// <param name="sender">The export button that raised the event.</param>
+        /// <param name="e">The event data.</param>
         private void btnExport_Click(object sender, EventArgs e)
         {
             using SaveFileDialog dialog = new();
@@ -109,6 +136,11 @@ namespace Weekly_Planner
             ActivityStorage.Export(filepath, days);
         }
 
+        /// <summary>
+        /// Prompts the user to choose a JSON file and imports all day plans.
+        /// </summary>
+        /// <param name="sender">The import button that raised the event.</param>
+        /// <param name="e">The event data.</param>
         private void btnImport_Click(object sender, EventArgs e)
         {
             using OpenFileDialog dialog = new();

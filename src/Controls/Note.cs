@@ -5,6 +5,9 @@ using Weekly_Planner.Properties;
 
 namespace Weekly_Planner.Controls
 {
+    /// <summary>
+    /// Displays a single planned activity and provides edit, delete, and expand controls.
+    /// </summary>
     public partial class Note : UserControl
     {
         /// <summary>
@@ -21,8 +24,9 @@ namespace Weekly_Planner.Controls
 
 
         /// <summary>
-        /// get or set the duration of the activity in minutes.
+        /// Gets or sets the duration of the activity in minutes.
         /// </summary>
+        /// <value>The duration in minutes.</value>
         public int Duration
         {
             get { return _activityInfo.Duration; }
@@ -34,8 +38,9 @@ namespace Weekly_Planner.Controls
         }
 
         /// <summary>
-        /// Get or set the content of the activity note.
+        /// Gets or sets the content of the activity note.
         /// </summary>
+        /// <value>The activity description.</value>
         public string Description
         {
             get { return _activityInfo.Description; }
@@ -46,8 +51,9 @@ namespace Weekly_Planner.Controls
             }
         }
         /// <summary>
-        /// Get or set the title of the activity note.
+        /// Gets or sets the title of the activity note.
         /// </summary>
+        /// <value>The activity title.</value>
         public string Title
         {
             get { return _activityInfo.Title; }
@@ -62,6 +68,10 @@ namespace Weekly_Planner.Controls
         
         private bool _isCollapse = false;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Note"/> class.
+        /// </summary>
+        /// <param name="activityInfo">The activity to display.</param>
         public Note(ActivityDetails activityInfo)
         {
             InitializeComponent();
@@ -83,9 +93,9 @@ namespace Weekly_Planner.Controls
         }
 
         /// <summary>
-        /// Retrieves the current state of the Note as an ActivityInfo object.
+        /// Retrieves the current state of the note as activity details.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A new <see cref="ActivityDetails"/> containing the note's current title, description, and duration.</returns>
         public ActivityDetails ToActivityDetail()
         {
             return new ActivityDetails(this.Title, this.Description, this.Duration);
@@ -105,7 +115,6 @@ namespace Weekly_Planner.Controls
                 Collapse();
 
             _isCollapse = !_isCollapse;
-
         }
 
         private void Expand()
