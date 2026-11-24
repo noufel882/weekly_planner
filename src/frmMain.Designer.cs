@@ -57,6 +57,7 @@ namespace Weekly_Planner
             pnlSunday = new DaysPanel();
             btnExport = new Button();
             btnImport = new Button();
+            label12 = new Label();
             panel1.SuspendLayout();
             tlpDaysTable.SuspendLayout();
             SuspendLayout();
@@ -199,7 +200,7 @@ namespace Weekly_Planner
             tlpDaysTable.RowCount = 2;
             tlpDaysTable.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             tlpDaysTable.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
-            tlpDaysTable.Size = new Size(1730, 511);
+            tlpDaysTable.Size = new Size(1730, 484);
             tlpDaysTable.TabIndex = 2;
             // 
             // label11
@@ -211,7 +212,7 @@ namespace Weekly_Planner
             label11.ForeColor = SystemColors.ControlLight;
             label11.Location = new Point(1238, 1);
             label11.Name = "label11";
-            label11.Size = new Size(240, 76);
+            label11.Size = new Size(240, 72);
             label11.TabIndex = 13;
             label11.Text = "الإثنين";
             label11.TextAlign = ContentAlignment.MiddleCenter;
@@ -225,7 +226,7 @@ namespace Weekly_Planner
             label10.ForeColor = SystemColors.ControlLight;
             label10.Location = new Point(991, 1);
             label10.Name = "label10";
-            label10.Size = new Size(240, 76);
+            label10.Size = new Size(240, 72);
             label10.TabIndex = 12;
             label10.Text = "الثلاثاء";
             label10.TextAlign = ContentAlignment.MiddleCenter;
@@ -239,7 +240,7 @@ namespace Weekly_Planner
             label9.ForeColor = SystemColors.ControlLight;
             label9.Location = new Point(744, 1);
             label9.Name = "label9";
-            label9.Size = new Size(240, 76);
+            label9.Size = new Size(240, 72);
             label9.TabIndex = 11;
             label9.Text = "الأربعاء";
             label9.TextAlign = ContentAlignment.MiddleCenter;
@@ -253,7 +254,7 @@ namespace Weekly_Planner
             label8.ForeColor = SystemColors.ControlLight;
             label8.Location = new Point(497, 1);
             label8.Name = "label8";
-            label8.Size = new Size(240, 76);
+            label8.Size = new Size(240, 72);
             label8.TabIndex = 10;
             label8.Text = "الخميس";
             label8.TextAlign = ContentAlignment.MiddleCenter;
@@ -267,7 +268,7 @@ namespace Weekly_Planner
             label7.ForeColor = SystemColors.ControlLight;
             label7.Location = new Point(250, 1);
             label7.Name = "label7";
-            label7.Size = new Size(240, 76);
+            label7.Size = new Size(240, 72);
             label7.TabIndex = 9;
             label7.Text = "الجمعة";
             label7.TextAlign = ContentAlignment.MiddleCenter;
@@ -281,7 +282,7 @@ namespace Weekly_Planner
             label2.ForeColor = SystemColors.ControlLight;
             label2.Location = new Point(1485, 1);
             label2.Name = "label2";
-            label2.Size = new Size(241, 76);
+            label2.Size = new Size(241, 72);
             label2.TabIndex = 7;
             label2.Text = "الأحد";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -295,7 +296,7 @@ namespace Weekly_Planner
             label5.ForeColor = SystemColors.ControlLight;
             label5.Location = new Point(4, 1);
             label5.Name = "label5";
-            label5.Size = new Size(239, 76);
+            label5.Size = new Size(239, 72);
             label5.TabIndex = 8;
             label5.Text = "السبت";
             label5.TextAlign = ContentAlignment.MiddleCenter;
@@ -306,10 +307,10 @@ namespace Weekly_Planner
             pnlSaturday.DayName = DayName.Sat;
             pnlSaturday.Dock = DockStyle.Fill;
             pnlSaturday.FlowDirection = FlowDirection.TopDown;
-            pnlSaturday.Location = new Point(4, 81);
+            pnlSaturday.Location = new Point(4, 77);
             pnlSaturday.Name = "pnlSaturday";
             pnlSaturday.Padding = new Padding(0, 3, 0, 3);
-            pnlSaturday.Size = new Size(239, 426);
+            pnlSaturday.Size = new Size(239, 403);
             pnlSaturday.TabIndex = 14;
             pnlSaturday.WrapContents = false;
             pnlSaturday.ActivityChanged += UpdateStatus;
@@ -320,10 +321,10 @@ namespace Weekly_Planner
             pnlFriday.DayName = DayName.Fri;
             pnlFriday.Dock = DockStyle.Fill;
             pnlFriday.FlowDirection = FlowDirection.TopDown;
-            pnlFriday.Location = new Point(250, 81);
+            pnlFriday.Location = new Point(250, 77);
             pnlFriday.Name = "pnlFriday";
             pnlFriday.Padding = new Padding(0, 3, 0, 3);
-            pnlFriday.Size = new Size(240, 426);
+            pnlFriday.Size = new Size(240, 403);
             pnlFriday.TabIndex = 15;
             pnlFriday.WrapContents = false;
             pnlFriday.ActivityChanged += UpdateStatus;
@@ -334,10 +335,10 @@ namespace Weekly_Planner
             pnlThursday.DayName = DayName.Thu;
             pnlThursday.Dock = DockStyle.Fill;
             pnlThursday.FlowDirection = FlowDirection.TopDown;
-            pnlThursday.Location = new Point(497, 81);
+            pnlThursday.Location = new Point(497, 77);
             pnlThursday.Name = "pnlThursday";
             pnlThursday.Padding = new Padding(0, 3, 0, 3);
-            pnlThursday.Size = new Size(240, 426);
+            pnlThursday.Size = new Size(240, 403);
             pnlThursday.TabIndex = 16;
             pnlThursday.WrapContents = false;
             pnlThursday.ActivityChanged += UpdateStatus;
@@ -348,10 +349,10 @@ namespace Weekly_Planner
             pnlWednesday.DayName = DayName.Wed;
             pnlWednesday.Dock = DockStyle.Fill;
             pnlWednesday.FlowDirection = FlowDirection.TopDown;
-            pnlWednesday.Location = new Point(744, 81);
+            pnlWednesday.Location = new Point(744, 77);
             pnlWednesday.Name = "pnlWednesday";
             pnlWednesday.Padding = new Padding(0, 3, 0, 3);
-            pnlWednesday.Size = new Size(240, 426);
+            pnlWednesday.Size = new Size(240, 403);
             pnlWednesday.TabIndex = 17;
             pnlWednesday.WrapContents = false;
             pnlWednesday.ActivityChanged += UpdateStatus;
@@ -362,10 +363,10 @@ namespace Weekly_Planner
             pnlTuesday.DayName = DayName.Tue;
             pnlTuesday.Dock = DockStyle.Fill;
             pnlTuesday.FlowDirection = FlowDirection.TopDown;
-            pnlTuesday.Location = new Point(991, 81);
+            pnlTuesday.Location = new Point(991, 77);
             pnlTuesday.Name = "pnlTuesday";
             pnlTuesday.Padding = new Padding(0, 3, 0, 3);
-            pnlTuesday.Size = new Size(240, 426);
+            pnlTuesday.Size = new Size(240, 403);
             pnlTuesday.TabIndex = 18;
             pnlTuesday.WrapContents = false;
             pnlTuesday.ActivityChanged += UpdateStatus;
@@ -376,10 +377,10 @@ namespace Weekly_Planner
             pnlMonday.DayName = DayName.Mon;
             pnlMonday.Dock = DockStyle.Fill;
             pnlMonday.FlowDirection = FlowDirection.TopDown;
-            pnlMonday.Location = new Point(1238, 81);
+            pnlMonday.Location = new Point(1238, 77);
             pnlMonday.Name = "pnlMonday";
             pnlMonday.Padding = new Padding(0, 3, 0, 3);
-            pnlMonday.Size = new Size(240, 426);
+            pnlMonday.Size = new Size(240, 403);
             pnlMonday.TabIndex = 19;
             pnlMonday.WrapContents = false;
             pnlMonday.ActivityChanged += UpdateStatus;
@@ -390,10 +391,10 @@ namespace Weekly_Planner
             pnlSunday.DayName = DayName.Sun;
             pnlSunday.Dock = DockStyle.Fill;
             pnlSunday.FlowDirection = FlowDirection.TopDown;
-            pnlSunday.Location = new Point(1485, 81);
+            pnlSunday.Location = new Point(1485, 77);
             pnlSunday.Name = "pnlSunday";
             pnlSunday.Padding = new Padding(0, 3, 0, 3);
-            pnlSunday.Size = new Size(241, 426);
+            pnlSunday.Size = new Size(241, 403);
             pnlSunday.TabIndex = 20;
             pnlSunday.WrapContents = false;
             pnlSunday.ActivityChanged += UpdateStatus;
@@ -424,12 +425,26 @@ namespace Weekly_Planner
             btnImport.UseVisualStyleBackColor = false;
             btnImport.Click += btnImport_Click;
             // 
+            // label12
+            // 
+            label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label12.AutoSize = true;
+            label12.BackColor = Color.Transparent;
+            label12.Font = new Font("Tahoma", 6F, FontStyle.Bold);
+            label12.ForeColor = Color.Gray;
+            label12.Location = new Point(20, 789);
+            label12.Name = "label12";
+            label12.Size = new Size(79, 14);
+            label12.TabIndex = 5;
+            label12.Text = "version : V1";
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(23, 28, 52);
             ClientSize = new Size(1760, 815);
+            Controls.Add(label12);
             Controls.Add(btnImport);
             Controls.Add(btnExport);
             Controls.Add(tlpDaysTable);
@@ -475,5 +490,6 @@ namespace Weekly_Planner
         private DaysPanel pnlTuesday;
         private DaysPanel pnlMonday;
         private DaysPanel pnlSunday;
+        private Label label12;
     }
 }
