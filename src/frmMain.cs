@@ -133,7 +133,7 @@ namespace Weekly_Planner
 
             };
 
-            ActivityStorage.Export(filepath, days);
+            StorageManager.Export(filepath, days);
         }
 
         /// <summary>
@@ -155,7 +155,17 @@ namespace Weekly_Planner
                 return;
 
             var filepath = dialog.FileName;
-            PlannerDay[] days = ActivityStorage.Import(filepath)!;
+
+            PlannerDay[] days = StorageManager.Import(filepath)!;
+
+            if(days is null)
+            {
+                MessageBox.Show("الملف اللذي اخترته تالف أو غير صالح للستعمال ، الرجاء إختيار ملف اخر"
+                    ,"فشل التحميل",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Hand);
+                return;
+            }
 
 
             this.SuspendLayout();
