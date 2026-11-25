@@ -132,13 +132,14 @@
             btnClose.TabIndex = 7;
             btnClose.Text = "خروج";
             btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
             // 
             // frmCreateOrEditActivity
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(23, 28, 52);
-            ClientSize = new Size(600, 706);
+            ClientSize = new Size(596, 702);
             ControlBox = false;
             Controls.Add(btnClose);
             Controls.Add(nudDuration);

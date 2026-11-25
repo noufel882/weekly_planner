@@ -72,8 +72,14 @@ namespace Weekly_Planner.Forms
             }
 
             // Edit mode
-            else if (_currentMode == Mode.Edit) 
+            else if (_currentMode == Mode.Edit)
             {
+                if (_Activity.Title == txtTitle.Text && _Activity.Description == txtDescription.Text && _Activity.Duration == (int)nudDuration.Value)
+                {
+                    MessageBox.Show("أنت لم تقم باي تعديل على النشاط", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    return;
+                }
+
                 _Activity.Title = txtTitle.Text;
                 _Activity.Description = txtDescription.Text;
                 _Activity.Duration = (int)nudDuration.Value;
@@ -83,5 +89,6 @@ namespace Weekly_Planner.Forms
 
         }
 
+        private void btnClose_Click(object sender, EventArgs e) => Close();
     }
 }

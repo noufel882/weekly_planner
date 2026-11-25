@@ -1,8 +1,8 @@
 #pragma warning disable WFO1000 // disabled warnings for this file
 
+using System.Windows.Forms.VisualStyles;
 using Weekly_Planner.Controls;
 using Weekly_Planner.Models;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Weekly_Planner
 {
@@ -14,6 +14,11 @@ namespace Weekly_Planner
         private int _taskCount = 0;
         private int _totalPlannedTime = 0;
         private int _plannedDays = 0;
+
+        private string _currentPath = string.Empty;
+
+        private bool _planSaved = true;
+
 
         /// <summary>
         /// Gets or sets the total number of activities across all planned days.
@@ -68,72 +73,76 @@ namespace Weekly_Planner
             PlanningDays = 0;
         }
 
-
         /// <summary>
         /// Recalculates the summary displayed in the main window.
         /// </summary>
         /// <param name="sender">The object that raised the event.</param>
         /// <param name="e">The event data.</param>
-        private void UpdateStatus(object sender, EventArgs e)
+        private void UpdateStatus(object sender, ActivityChangeTypeEventArgs e)
         {
-            int plannedDays = 0;
-            int totalPlannedTime = 0;
-            int taskCount = 0;
+            var dayPanel = (DayPanel)sender!;
 
-            foreach (var item in tlpDaysTable.Controls)
+            if (e.ChangeType == ActivityChangeType.ADDING)
             {
-                if (item is DaysPanel dayPanel)
+                foreach (var activity in e.New!)
                 {
-                    if (dayPanel.TasksCount > 0)
-                    {
-                        plannedDays++;
-                        taskCount += dayPanel.TasksCount;
-                        totalPlannedTime += dayPanel.TotalPlannedTime;
-                    }
+                    TotalPlannedTime += activity.Duration;
+                    TasksCount++;
+                }
+                PlanningDays++;
+            }
+
+            else if (e.ChangeType == ActivityChangeType.REMOVING)
+            {
+                foreach (var activity in e.Old!)
+                {
+                    TotalPlannedTime -= activity.Duration;
+                    TasksCount--;
+                }
+                if (dayPanel.TasksCount == 0)
+                    PlanningDays--;
+            }
+
+            else
+            {
+                for (int i = 0; i < e.New!.Length; i++)
+                {
+                    TotalPlannedTime += e.New[i].Duration - e.Old![i].Duration;
                 }
             }
 
-            // Update the UI labels with the new values
-            PlanningDays = plannedDays;
-            TotalPlannedTime = totalPlannedTime;
-            TasksCount = taskCount;
-
+            MarkedAsUnsaved();
         }
+     
 
         /// <summary>
         /// Prompts the user to choose a JSON file and exports all day plans.
         /// </summary>
         /// <param name="sender">The export button that raised the event.</param>
         /// <param name="e">The event data.</param>
-        private void btnExport_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            using SaveFileDialog dialog = new();
-            dialog.Title = "Export Weekly Planner";
-            dialog.FileName = "WeeklyPlanner.json";
-            dialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
-            dialog.DefaultExt = "json";
-            dialog.AddExtension = true;
-            dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            dialog.OverwritePrompt = true;
-            dialog.CheckPathExists = true;
-
-            if (dialog.ShowDialog() != DialogResult.OK)
-                return;
-
-            var filepath = dialog.FileName;
-            PlannerDay[] days =
+            var savePath = string.Empty;
+            if (string.IsNullOrWhiteSpace(_currentPath))
             {
-                pnlSunday.ToPlannerDay(),
-                pnlMonday.ToPlannerDay(),
-                pnlTuesday.ToPlannerDay(),
-                pnlWednesday.ToPlannerDay(),
-                pnlThursday.ToPlannerDay(),
-                pnlFriday.ToPlannerDay(),
-                pnlSaturday.ToPlannerDay(),
+                using SaveFileDialog dialog = new();
+                dialog.Title = "Export Weekly Planner";
+                dialog.FileName = "WeeklyPlanner.json";
+                dialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
+                dialog.DefaultExt = "json";
+                dialog.AddExtension = true;
+                dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                dialog.OverwritePrompt = true;
+                dialog.CheckPathExists = true;
 
-            };
+                if (dialog.ShowDialog() != DialogResult.OK)
+                    return;
+                savePath = dialog.FileName;
+            }
+            else
+                savePath = _currentPath;
 
-            StorageManager.Export(filepath, days);
+            SavePlan(savePath);
         }
 
         /// <summary>
@@ -143,6 +152,7 @@ namespace Weekly_Planner
         /// <param name="e">The event data.</param>
         private void btnImport_Click(object sender, EventArgs e)
         {
+
             using OpenFileDialog dialog = new();
             dialog.Title = "Import Weekly Planner";
             dialog.Filter = "JSON Files (*.json)|*.json|All Files (*.*)|*.*";
@@ -154,14 +164,20 @@ namespace Weekly_Planner
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
 
-            var filepath = dialog.FileName;
 
-            PlannerDay[] days = StorageManager.Import(filepath)!;
+            var loadPath = dialog.FileName;
 
-            if(days is null)
+            LoadPlan(loadPath);
+        }
+
+        private void LoadPlan(string loadPath)
+        {
+            PlannerDay[]? days = StorageManager.Import(loadPath);
+
+            if (days is null)
             {
                 MessageBox.Show("الملف اللذي اخترته تالف أو غير صالح للستعمال ، الرجاء إختيار ملف اخر"
-                    ,"فشل التحميل",
+                    , "فشل التحميل",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Hand);
                 return;
@@ -172,43 +188,98 @@ namespace Weekly_Planner
 
             foreach (var day in days)
             {
-               
+
                 switch (day.DayName)
                 {
                     case DayName.Sun:
-                        pnlSunday.Load(day);
+                        pnlSunday.Add(day);
                         break;
 
                     case DayName.Mon:
-                        pnlMonday.Load(day);
+                        pnlMonday.Add(day);
                         break;
 
                     case DayName.Tue:
-                        pnlTuesday.Load(day);
+                        pnlTuesday.Add(day);
                         break;
 
                     case DayName.Wed:
-                        pnlWednesday.Load(day);
+                        pnlWednesday.Add(day);
                         break;
 
                     case DayName.Thu:
-                        pnlThursday.Load(day);
+                        pnlThursday.Add(day);
                         break;
 
                     case DayName.Fri:
-                        pnlFriday.Load(day);
+                        pnlFriday.Add(day);
                         break;
 
                     case DayName.Sat:
-                        pnlSaturday.Load(day);
+                        pnlSaturday.Add(day);
                         break;
                 }
             }
 
+
             this.ResumeLayout(false);
             this.PerformLayout();
+
+            MarkedAsSavedInPath(loadPath);
         }
 
-       
+        private void SavePlan(string savePath)
+        {
+            PlannerDay[] days =
+           {
+                pnlSunday.ToPlannerDay(),
+                pnlMonday.ToPlannerDay(),
+                pnlTuesday.ToPlannerDay(),
+                pnlWednesday.ToPlannerDay(),
+                pnlThursday.ToPlannerDay(),
+                pnlFriday.ToPlannerDay(),
+                pnlSaturday.ToPlannerDay(),
+
+            };
+
+            _planSaved = StorageManager.Export(savePath, days);
+
+            if (_planSaved)
+            {
+                MessageBox.Show("تم الحفظ بنجاح", "تم الحفظ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MarkedAsSavedInPath(savePath);
+            }
+            else
+            {
+                MessageBox.Show("فشلت عملية حفظ الجدول", "فشل الحفظ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MarkedAsUnsaved();
+            }
+
+        }
+
+        private void MarkedAsUnsaved()
+        {
+            _planSaved = false;
+            this.Text = _currentPath + (_planSaved ? "" : " * ");
+        }
+
+        private void MarkedAsSavedInPath(string path)
+        {
+            _planSaved = true;
+            _currentPath = path;
+            this.Text = _currentPath + (_planSaved ? "" : " * ");
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!_planSaved && MessageBox.Show("انت لم تقم بحفظ التعديلات ، هل تريد الحفظ ؟","حفظ التعديلات",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                btnSave.PerformClick();
+                e.Cancel = true;
+                return;
+            }
+        }
+    
+    
     }
 }

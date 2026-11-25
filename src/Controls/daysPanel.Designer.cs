@@ -1,6 +1,6 @@
 ﻿namespace Weekly_Planner.Controls
 {
-    partial class DaysPanel
+    partial class DayPanel
     {
         /// <summary>
         /// Required designer variable.

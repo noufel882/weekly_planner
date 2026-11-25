@@ -52,13 +52,17 @@ namespace Weekly_Planner.Models
         /// <param name="path">The full destination file path.</param>
         /// <param name="days">The planner days to serialize.</param>
         /// <returns><see langword="true"/> when the file is written successfully; otherwise, <see langword="false"/>.</returns>
-        /// <exception cref="IOException">Thrown when the destination cannot be written.</exception>
-        public static bool Export(string path , PlannerDay[] days)
+      public static bool Export(string path , PlannerDay[] days)
         {
             if (string.IsNullOrWhiteSpace(path) || days is null)
                 return false;
 
-            Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+            var directory = Path.GetDirectoryName(path);
+
+            if (string.IsNullOrWhiteSpace(directory))
+                return false;
+
+            Directory.CreateDirectory(directory);
 
             var json = JsonSerializer.Serialize(days,options);
 

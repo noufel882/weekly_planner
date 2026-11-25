@@ -3,13 +3,16 @@
 using System.ComponentModel;
 using Weekly_Planner.Forms;
 using Weekly_Planner.Models;
+
 namespace Weekly_Planner.Controls
 {
     /// <summary>
     /// Hosts and manages the activity notes for one day of the week.
     /// </summary>
-    public partial class DaysPanel : FlowLayoutPanel
+    public partial class DayPanel : FlowLayoutPanel
     {
+        
+
         // Define a constant for the maximum time per day in minutes (24 hours * 60 = 1440 min)
         private const int MAX_TIME_PER_DAY = 1440;
         /// <summary>
@@ -47,7 +50,7 @@ namespace Weekly_Planner.Controls
         /// <summary>
         /// Occurs after an activity is added, edited, removed, or loaded.
         /// </summary>
-        public event EventHandler? ActivityChanged;
+        public event EventHandler<ActivityChangeTypeEventArgs>? ActivityChanged;
 
         /// <summary>
         /// Gets or sets the day represented by this panel.
@@ -57,9 +60,9 @@ namespace Weekly_Planner.Controls
         public DayName DayName { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DaysPanel"/> class.
+        /// Initializes a new instance of the <see cref="DayPanel"/> class.
         /// </summary>
-        public DaysPanel()
+        public DayPanel()
         {
             InitializeComponent();
             
@@ -105,7 +108,7 @@ namespace Weekly_Planner.Controls
 
             // Ensure the "Add New" button is always at the bottom of the panel
             this.Controls.SetChildIndex(btnAddNew, Controls.Count - 1);
-            this.ActivityChanged?.Invoke(this, EventArgs.Empty);
+            this.ActivityChanged?.Invoke(this, new ActivityChangeTypeEventArgs(ActivityChangeType.ADDING, null, [activity]));
         }
 
         /// <summary>
@@ -117,18 +120,22 @@ namespace Weekly_Planner.Controls
         {
             var note = (Note)sender!;
 
+            var oldDetails = note.ToActivityDetail();
+
             using var frmEditActivity = new frmCreateOrEditActivity(RemainingTime + note.Duration, note.ToActivityDetail());
             
             // If the user canceled the edit operation, exit the method
             if (frmEditActivity.ShowDialog() != DialogResult.OK)
                 return;
-        
+
+
+            var newDetails = frmEditActivity.Activity;
             //Otherwise, refresh the note to reflect the changes
-            note.Title = frmEditActivity.Activity.Title;
-            note.Description = frmEditActivity.Activity.Description;
-            note.Duration = frmEditActivity.Activity.Duration;
+            note.Title = newDetails.Title;
+            note.Description = newDetails.Description;
+            note.Duration = newDetails.Duration;
             // Raise the ActivityChanged event for the DaysPanel
-            this.ActivityChanged?.Invoke(this, EventArgs.Empty);
+            this.ActivityChanged?.Invoke(this, new ActivityChangeTypeEventArgs(ActivityChangeType.EDITING , [oldDetails], [newDetails]));
 
         }
 
@@ -140,10 +147,11 @@ namespace Weekly_Planner.Controls
         private void Remove(object? sender, EventArgs e)
         {
             var note = (Note)sender!;
+            var details = note.ToActivityDetail();
             this.Controls.Remove(note);
             note.Dispose();
             TasksCount--;
-            this.ActivityChanged?.Invoke(this, EventArgs.Empty);
+            this.ActivityChanged?.Invoke(this, new(ActivityChangeType.REMOVING , [details],null));
         }
 
         /// <summary>
@@ -167,12 +175,27 @@ namespace Weekly_Planner.Controls
         /// Adds all activities from a serialized day plan to this panel.
         /// </summary>
         /// <param name="day">The day plan to load.</param>
-        public void Load(PlannerDay day)
+        public void Add(PlannerDay day)
         {
+            this.SuspendLayout();
             foreach(var activity in day.ActivitiesList)
             {
-                Add(activity);
+                var newNote = new Note(activity);
+
+                newNote.DeleteRequest += Remove;
+                newNote.EditRequest += Edit;
+
+                this.Controls.Add(newNote);
+                TasksCount++;
+
+                // Ensure the "Add New" button is always at the bottom of the panel
+                this.Controls.SetChildIndex(btnAddNew, Controls.Count - 1);
+
             }
+            this.ResumeLayout(false);
+            this.PerformLayout();
+            this.ActivityChanged?.Invoke(this, new ActivityChangeTypeEventArgs(ActivityChangeType.ADDING, null, day.ActivitiesList.ToArray()));
+
         }
     }
 }
