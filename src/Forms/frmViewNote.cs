@@ -23,6 +23,11 @@ namespace Weekly_Planner.Forms
             txtDuration.Text = note.Duration.ToString();
         }
 
+        /// <summary>
+        /// Closes the activity details form.
+        /// </summary>
+        /// <param name="sender">The close button that raised the event.</param>
+        /// <param name="e">The event data.</param>
         private void btnClose_Click(object sender, EventArgs e) => Close();
     }
 }

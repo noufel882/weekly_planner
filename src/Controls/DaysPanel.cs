@@ -16,7 +16,7 @@ namespace Weekly_Planner.Controls
         // Define a constant for the maximum time per day in minutes (24 hours * 60 = 1440 min)
         private const int MAX_TIME_PER_DAY = 1440;
         /// <summary>
-        /// Gets or sets the number of tasks in this day panel.
+        /// Gets the number of tasks in this day panel.
         /// </summary>
         /// <value>The number of activity notes.</value>
         public int TasksCount => this.Controls.OfType<Note>().Count();
@@ -188,6 +188,9 @@ namespace Weekly_Planner.Controls
 
         }
 
+        /// <summary>
+        /// Removes and disposes all activity notes from this panel.
+        /// </summary>
         public void Clear()
         {
             try

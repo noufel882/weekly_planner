@@ -13,16 +13,22 @@ namespace Weekly_Planner.Forms
         /// <summary>
         /// Specifies whether the form creates or edits an activity.
         /// </summary>
-        public enum Mode { Create, Edit }
+        public enum Mode
+        {
+            /// <summary>Creates a new activity.</summary>
+            Create,
+            /// <summary>Edits an existing activity.</summary>
+            Edit
+        }
 
         private Mode _currentMode;
 
         private ActivityDetails _Activity;
 
         /// <summary>
-        /// Gets the activity confirmed by the form.
+        /// Gets the activity currently represented by the form.
         /// </summary>
-        /// <value>The created or edited activity, or <see langword="null"/> before confirmation.</value>
+        /// <value>The activity being created or edited.</value>
         public ActivityDetails Activity => _Activity;
 
         /// <summary>
@@ -56,6 +62,11 @@ namespace Weekly_Planner.Forms
 
         }
 
+        /// <summary>
+        /// Validates the entered activity data and confirms the create or edit operation.
+        /// </summary>
+        /// <param name="sender">The confirmation button that raised the event.</param>
+        /// <param name="e">The event data.</param>
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtTitle.Text))
@@ -89,6 +100,11 @@ namespace Weekly_Planner.Forms
 
         }
 
+        /// <summary>
+        /// Closes the activity form without confirming changes.
+        /// </summary>
+        /// <param name="sender">The close button that raised the event.</param>
+        /// <param name="e">The event data.</param>
         private void btnClose_Click(object sender, EventArgs e) => Close();
     }
 }

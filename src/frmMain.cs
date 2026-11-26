@@ -151,6 +151,10 @@ namespace Weekly_Planner
             LoadPlan(loadPath);
         }
 
+        /// <summary>
+        /// Loads planner data from the specified JSON file and displays it in the day panels.
+        /// </summary>
+        /// <param name="loadPath">The path of the JSON file to load.</param>
         private void LoadPlan(string loadPath)
         {
             PlannerDay[]? days = StorageManager.Import(loadPath);
@@ -206,6 +210,10 @@ namespace Weekly_Planner
             MarkedAsSavedInPath(loadPath);
         }
 
+        /// <summary>
+        /// Creates a plan from the current day panels and saves it to the specified JSON file.
+        /// </summary>
+        /// <param name="savePath">The destination path for the JSON file.</param>
         private void SavePlan(string savePath)
         {
             PlannerDay[] days =
@@ -235,12 +243,19 @@ namespace Weekly_Planner
 
         }
 
+        /// <summary>
+        /// Marks the current plan as having unsaved changes and refreshes the window title.
+        /// </summary>
         private void MarkedAsUnsaved()
         {
             _planSaved = false;
             UpdateTitle();
         }
 
+        /// <summary>
+        /// Marks the current plan as saved at the specified path and refreshes the window title.
+        /// </summary>
+        /// <param name="path">The path where the current plan was saved or loaded.</param>
         private void MarkedAsSavedInPath(string path)
         {
             _planSaved = true;
@@ -248,11 +263,19 @@ namespace Weekly_Planner
             UpdateTitle();
         }
 
+        /// <summary>
+        /// Updates the window title to show the current file path and save state.
+        /// </summary>
         private void UpdateTitle()
         {
             this.Text = _currentPath + (_planSaved ? "" : " (Unsaved) ");
         }
 
+        /// <summary>
+        /// Prompts the user to save changes before the main window closes.
+        /// </summary>
+        /// <param name="sender">The main form that is closing.</param>
+        /// <param name="e">The event data used to cancel closing when needed.</param>
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!_planSaved && MessageBox.Show("انت لم تقم بحفظ التعديلات ، هل تريد الحفظ ؟","حفظ التعديلات",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
@@ -263,6 +286,9 @@ namespace Weekly_Planner
             }
         }
     
+        /// <summary>
+        /// Removes all activities from the weekly day panels.
+        /// </summary>
         private void Clear()
         {
             foreach (var day in WeekTable.Controls.OfType<DayPanel>())

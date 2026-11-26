@@ -82,11 +82,21 @@ namespace Weekly_Planner.Controls
             _expandedHeight = this.Height;
         }
 
+        /// <summary>
+        /// Raises the <see cref="DeleteRequest"/> event when the user requests note deletion.
+        /// </summary>
+        /// <param name="sender">The delete button that raised the event.</param>
+        /// <param name="e">The event data.</param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DeleteRequest?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Raises the <see cref="EditRequest"/> event when the user requests note editing.
+        /// </summary>
+        /// <param name="sender">The edit button that raised the event.</param>
+        /// <param name="e">The event data.</param>
         private void btnEdit_Click(object sender, EventArgs e)
         {
             EditRequest?.Invoke(this, EventArgs.Empty);
@@ -101,12 +111,22 @@ namespace Weekly_Planner.Controls
             return new ActivityDetails(this.Title, this.Description, this.Duration);
         }
 
+        /// <summary>
+        /// Opens a dialog displaying the complete details of this activity.
+        /// </summary>
+        /// <param name="sender">The details button that raised the event.</param>
+        /// <param name="e">The event data.</param>
         private void btnViewDetails_Click(object sender, EventArgs e)
         {
             using var detailsForm = new frmViewActivityDetails(this.ToActivityDetail());
             detailsForm.ShowDialog();
         }
 
+        /// <summary>
+        /// Toggles the note between its expanded and collapsed display states.
+        /// </summary>
+        /// <param name="sender">The toggle button that raised the event.</param>
+        /// <param name="e">The event data.</param>
         private void btnToggleNote_Click(object sender, EventArgs e)
         {
             if (_isCollapse)
@@ -117,12 +137,18 @@ namespace Weekly_Planner.Controls
             _isCollapse = !_isCollapse;
         }
 
+        /// <summary>
+        /// Restores the note to its original expanded height.
+        /// </summary>
         private void Expand()
         {
             btnToggleNote.Image = Resources.arrow_down_36;
             this.Height = _expandedHeight;
         }
 
+        /// <summary>
+        /// Collapses the note so that only its header is visible.
+        /// </summary>
         private void Collapse()
         {
             btnToggleNote.Image = Resources.arrow_up_36;
