@@ -19,27 +19,14 @@ namespace Weekly_Planner.Controls
         /// Gets or sets the number of tasks in this day panel.
         /// </summary>
         /// <value>The number of activity notes.</value>
-        public int TasksCount { get; private set; } = 0;
+        public int TasksCount => this.Controls.OfType<Note>().Count();
 
         /// <summary>
         /// Gets the total planned time in minutes for all activities in this day panel.
         /// </summary>
         /// <value>The sum of all activity durations.</value>
-        public int TotalPlannedTime
-        {
-            get
-            {
-                int totalTime = 0;
-                foreach (Control control in this.Controls)
-                {
-                    if (control is Note activityNote)
-                    {
-                        totalTime += activityNote.Duration;
-                    }
-                }
-                return totalTime;
-            }
-        }
+        public int TotalPlannedTime => this.Controls.OfType<Note>().Sum(n => n.Duration);
+        
 
         /// <summary>
         /// Gets the remaining time in minutes after accounting for all planned activities.
@@ -104,7 +91,6 @@ namespace Weekly_Planner.Controls
             newNote.EditRequest += Edit;
 
             this.Controls.Add(newNote);
-            TasksCount++;
 
             // Ensure the "Add New" button is always at the bottom of the panel
             this.Controls.SetChildIndex(btnAddNew, Controls.Count - 1);
@@ -150,7 +136,6 @@ namespace Weekly_Planner.Controls
             var details = note.ToActivityDetail();
             this.Controls.Remove(note);
             note.Dispose();
-            TasksCount--;
             this.ActivityChanged?.Invoke(this, new(ActivityChangeType.REMOVING , [details],null));
         }
 
@@ -178,24 +163,50 @@ namespace Weekly_Planner.Controls
         public void Add(PlannerDay day)
         {
             this.SuspendLayout();
-            foreach(var activity in day.ActivitiesList)
+            try
             {
-                var newNote = new Note(activity);
 
-                newNote.DeleteRequest += Remove;
-                newNote.EditRequest += Edit;
+                foreach (var activity in day.ActivitiesList)
+                {
+                    var newNote = new Note(activity);
 
-                this.Controls.Add(newNote);
-                TasksCount++;
+                    newNote.DeleteRequest += Remove;
+                    newNote.EditRequest += Edit;
 
+                    this.Controls.Add(newNote);
+
+
+                }
                 // Ensure the "Add New" button is always at the bottom of the panel
                 this.Controls.SetChildIndex(btnAddNew, Controls.Count - 1);
-
+                this.ActivityChanged?.Invoke(this, new ActivityChangeTypeEventArgs(ActivityChangeType.ADDING, null, day.ActivitiesList.ToArray()));
             }
-            this.ResumeLayout(false);
-            this.PerformLayout();
-            this.ActivityChanged?.Invoke(this, new ActivityChangeTypeEventArgs(ActivityChangeType.ADDING, null, day.ActivitiesList.ToArray()));
+            finally
+            {
+                this.ResumeLayout(false);
+            }
 
         }
+
+        public void Clear()
+        {
+            try
+            {
+
+                this.SuspendLayout();
+                this.Controls.SetChildIndex(btnAddNew, 0);
+                while (this.Controls.Count > 1)
+                {
+                    this.Controls[this.Controls.Count - 1].Dispose();
+                }
+
+            }
+            finally
+            {
+                this.ResumeLayout(true);
+            }
+
+        }
+
     }
 }

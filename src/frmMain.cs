@@ -152,6 +152,15 @@ namespace Weekly_Planner
         /// <param name="e">The event data.</param>
         private void btnImport_Click(object sender, EventArgs e)
         {
+            //If user already open a week planner and it's not save yet
+            if (!_planSaved) {
+                if (MessageBox.Show("انت لم تقم بحفظ الجدول الحالي ، هل تريد الجدول الحالي اولا ؟", "تنبيه",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    btnSave.PerformClick();
+                    return;
+                }
+            }
+
 
             using OpenFileDialog dialog = new();
             dialog.Title = "Import Weekly Planner";
@@ -184,7 +193,7 @@ namespace Weekly_Planner
             }
 
 
-            this.SuspendLayout();
+            this.Clear();
 
             foreach (var day in days)
             {
@@ -222,9 +231,6 @@ namespace Weekly_Planner
             }
 
 
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
             MarkedAsSavedInPath(loadPath);
         }
 
@@ -260,14 +266,19 @@ namespace Weekly_Planner
         private void MarkedAsUnsaved()
         {
             _planSaved = false;
-            this.Text = _currentPath + (_planSaved ? "" : " * ");
+            UpdateTitle();
         }
 
         private void MarkedAsSavedInPath(string path)
         {
             _planSaved = true;
             _currentPath = path;
-            this.Text = _currentPath + (_planSaved ? "" : " * ");
+            UpdateTitle();
+        }
+
+        private void UpdateTitle()
+        {
+            this.Text = _currentPath + (_planSaved ? "" : " (Unsaved) ");
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -280,6 +291,13 @@ namespace Weekly_Planner
             }
         }
     
-    
+        private void Clear()
+        {
+            foreach (var day in WeekTable.Controls.OfType<DayPanel>())
+            {
+                day.Clear();           
+            }
+        }
+
     }
 }
