@@ -78,39 +78,11 @@ namespace Weekly_Planner
         /// </summary>
         /// <param name="sender">The object that raised the event.</param>
         /// <param name="e">The event data.</param>
-        private void UpdateStatus(object sender, ActivityChangeTypeEventArgs e)
+        private void UpdateStatus(object sender, EventArgs e)
         {
-            var dayPanel = (DayPanel)sender!;
-
-            if (e.ChangeType == ActivityChangeType.ADDING)
-            {
-                foreach (var activity in e.New!)
-                {
-                    TotalPlannedTime += activity.Duration;
-                    TasksCount++;
-                }
-                PlanningDays++;
-            }
-
-            else if (e.ChangeType == ActivityChangeType.REMOVING)
-            {
-                foreach (var activity in e.Old!)
-                {
-                    TotalPlannedTime -= activity.Duration;
-                    TasksCount--;
-                }
-                if (dayPanel.TasksCount == 0)
-                    PlanningDays--;
-            }
-
-            else
-            {
-                for (int i = 0; i < e.New!.Length; i++)
-                {
-                    TotalPlannedTime += e.New[i].Duration - e.Old![i].Duration;
-                }
-            }
-
+            TotalPlannedTime = WeekTable.Controls.OfType<DayPanel>().Sum(day =>day.TotalPlannedTime);
+            TasksCount = WeekTable.Controls.OfType<DayPanel>().Sum(day => day.TasksCount);
+            PlanningDays = WeekTable.Controls.OfType<DayPanel>().Count(day => day.TasksCount > 0);
             MarkedAsUnsaved();
         }
      

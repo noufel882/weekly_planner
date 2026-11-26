@@ -37,7 +37,7 @@ namespace Weekly_Planner.Controls
         /// <summary>
         /// Occurs after an activity is added, edited, removed, or loaded.
         /// </summary>
-        public event EventHandler<ActivityChangeTypeEventArgs>? ActivityChanged;
+        public event EventHandler? ActivityChanged;
 
         /// <summary>
         /// Gets or sets the day represented by this panel.
@@ -94,7 +94,7 @@ namespace Weekly_Planner.Controls
 
             // Ensure the "Add New" button is always at the bottom of the panel
             this.Controls.SetChildIndex(btnAddNew, Controls.Count - 1);
-            this.ActivityChanged?.Invoke(this, new ActivityChangeTypeEventArgs(ActivityChangeType.ADDING, null, [activity]));
+            this.ActivityChanged?.Invoke(this,EventArgs.Empty);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Weekly_Planner.Controls
             note.Description = newDetails.Description;
             note.Duration = newDetails.Duration;
             // Raise the ActivityChanged event for the DaysPanel
-            this.ActivityChanged?.Invoke(this, new ActivityChangeTypeEventArgs(ActivityChangeType.EDITING , [oldDetails], [newDetails]));
+            this.ActivityChanged?.Invoke(this, EventArgs.Empty);
 
         }
 
@@ -136,7 +136,7 @@ namespace Weekly_Planner.Controls
             var details = note.ToActivityDetail();
             this.Controls.Remove(note);
             note.Dispose();
-            this.ActivityChanged?.Invoke(this, new(ActivityChangeType.REMOVING , [details],null));
+            this.ActivityChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace Weekly_Planner.Controls
                 }
                 // Ensure the "Add New" button is always at the bottom of the panel
                 this.Controls.SetChildIndex(btnAddNew, Controls.Count - 1);
-                this.ActivityChanged?.Invoke(this, new ActivityChangeTypeEventArgs(ActivityChangeType.ADDING, null, day.ActivitiesList.ToArray()));
+                this.ActivityChanged?.Invoke(this, EventArgs.Empty);
             }
             finally
             {
