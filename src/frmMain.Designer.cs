@@ -67,24 +67,25 @@ namespace Weekly_Planner
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.BackColor = Color.FromArgb(1, 34, 38, 74);
-            label1.Font = new Font("Tahoma", 21F, FontStyle.Bold);
-            label1.ForeColor = SystemColors.ControlLight;
-            label1.Location = new Point(1426, 38);
+            label1.Font = new Font("Tahoma", 24F, FontStyle.Bold);
+            label1.ForeColor = SystemColors.ControlLightLight;
+            label1.Location = new Point(1358, 26);
             label1.Name = "label1";
-            label1.Size = new Size(320, 51);
+            label1.Size = new Size(366, 58);
             label1.TabIndex = 0;
             label1.Text = "مخطط الأسبوع";
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.BackColor = Color.FromArgb(34, 28, 52);
+            panel1.BackColor = Color.FromArgb(27, 44, 66);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(lblPlannedDays);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(lblActivitiesCount);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(lblTotalTime);
+            panel1.Font = new Font("Tahoma", 12F);
             panel1.Location = new Point(16, 108);
             panel1.Name = "panel1";
             panel1.Size = new Size(1730, 147);
@@ -95,11 +96,11 @@ namespace Weekly_Planner
             label6.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             label6.AutoSize = true;
             label6.BackColor = Color.FromArgb(1, 34, 38, 74);
-            label6.Font = new Font("Tahoma", 13F);
+            label6.Font = new Font("Tahoma", 16F);
             label6.ForeColor = Color.Silver;
-            label6.Location = new Point(181, 30);
+            label6.Location = new Point(148, 14);
             label6.Name = "label6";
-            label6.Size = new Size(243, 31);
+            label6.Size = new Size(302, 39);
             label6.TabIndex = 6;
             label6.Text = "عدد الايام المخطط لها";
             // 
@@ -108,11 +109,11 @@ namespace Weekly_Planner
             lblPlannedDays.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             lblPlannedDays.AutoSize = true;
             lblPlannedDays.BackColor = Color.FromArgb(1, 34, 38, 74);
-            lblPlannedDays.Font = new Font("Tahoma", 21F, FontStyle.Bold);
+            lblPlannedDays.Font = new Font("Tahoma", 20F, FontStyle.Bold);
             lblPlannedDays.ForeColor = SystemColors.ControlLight;
             lblPlannedDays.Location = new Point(316, 81);
             lblPlannedDays.Name = "lblPlannedDays";
-            lblPlannedDays.Size = new Size(100, 51);
+            lblPlannedDays.Size = new Size(93, 48);
             lblPlannedDays.TabIndex = 5;
             lblPlannedDays.Text = "7/0";
             // 
@@ -121,11 +122,11 @@ namespace Weekly_Planner
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             label4.AutoSize = true;
             label4.BackColor = Color.FromArgb(1, 34, 38, 74);
-            label4.Font = new Font("Tahoma", 13F);
+            label4.Font = new Font("Tahoma", 16F);
             label4.ForeColor = Color.Silver;
-            label4.Location = new Point(826, 30);
+            label4.Location = new Point(803, 14);
             label4.Name = "label4";
-            label4.Size = new Size(153, 31);
+            label4.Size = new Size(189, 39);
             label4.TabIndex = 4;
             label4.Text = "عدد الأنشطة";
             // 
@@ -134,11 +135,11 @@ namespace Weekly_Planner
             lblActivitiesCount.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             lblActivitiesCount.AutoSize = true;
             lblActivitiesCount.BackColor = Color.FromArgb(1, 34, 38, 74);
-            lblActivitiesCount.Font = new Font("Tahoma", 21F, FontStyle.Bold);
+            lblActivitiesCount.Font = new Font("Tahoma", 20F, FontStyle.Bold);
             lblActivitiesCount.ForeColor = SystemColors.ControlLight;
             lblActivitiesCount.Location = new Point(931, 81);
             lblActivitiesCount.Name = "lblActivitiesCount";
-            lblActivitiesCount.Size = new Size(49, 51);
+            lblActivitiesCount.Size = new Size(45, 48);
             lblActivitiesCount.TabIndex = 3;
             lblActivitiesCount.Text = "0";
             // 
@@ -147,11 +148,11 @@ namespace Weekly_Planner
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.BackColor = Color.FromArgb(1, 34, 38, 74);
-            label3.Font = new Font("Tahoma", 13F);
+            label3.Font = new Font("Tahoma", 16F);
             label3.ForeColor = Color.Silver;
-            label3.Location = new Point(1472, 30);
+            label3.Location = new Point(1414, 14);
             label3.Name = "label3";
-            label3.Size = new Size(235, 31);
+            label3.Size = new Size(285, 39);
             label3.TabIndex = 2;
             label3.Text = "مجموع وقت الأسبوع";
             // 
@@ -160,19 +161,20 @@ namespace Weekly_Planner
             lblTotalTime.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             lblTotalTime.AutoSize = true;
             lblTotalTime.BackColor = Color.FromArgb(1, 34, 38, 74);
-            lblTotalTime.Font = new Font("Tahoma", 21F, FontStyle.Bold);
+            lblTotalTime.Font = new Font("Tahoma", 20F, FontStyle.Bold);
             lblTotalTime.ForeColor = SystemColors.ControlLight;
             lblTotalTime.Location = new Point(1655, 81);
             lblTotalTime.Name = "lblTotalTime";
-            lblTotalTime.Size = new Size(49, 51);
+            lblTotalTime.Size = new Size(45, 48);
             lblTotalTime.TabIndex = 1;
             lblTotalTime.Text = "0";
             // 
             // btnSave
             // 
-            btnSave.BackColor = Color.FromArgb(34, 28, 52);
-            btnSave.Font = new Font("Tahoma", 12F, FontStyle.Bold);
-            btnSave.ForeColor = Color.Gray;
+            btnSave.BackColor = Color.FromArgb(79, 209, 197);
+            btnSave.FlatStyle = FlatStyle.Popup;
+            btnSave.Font = new Font("Tahoma", 16F, FontStyle.Bold);
+            btnSave.ForeColor = Color.FromArgb(13, 19, 31);
             btnSave.Location = new Point(41, 19);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(228, 69);
@@ -183,9 +185,11 @@ namespace Weekly_Planner
             // 
             // btnImport
             // 
-            btnImport.BackColor = Color.FromArgb(34, 28, 52);
-            btnImport.Font = new Font("Tahoma", 12F, FontStyle.Bold);
-            btnImport.ForeColor = Color.Gray;
+            btnImport.BackColor = Color.FromArgb(27, 44, 66);
+            btnImport.FlatAppearance.BorderSize = 0;
+            btnImport.FlatStyle = FlatStyle.Popup;
+            btnImport.Font = new Font("Tahoma", 14F);
+            btnImport.ForeColor = Color.FromArgb(79, 209, 197);
             btnImport.Location = new Point(332, 19);
             btnImport.Name = "btnImport";
             btnImport.Size = new Size(228, 69);
@@ -199,17 +203,19 @@ namespace Weekly_Planner
             label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label12.AutoSize = true;
             label12.BackColor = Color.Transparent;
-            label12.Font = new Font("Tahoma", 6F, FontStyle.Bold);
+            label12.Font = new Font("Tahoma", 6F);
             label12.ForeColor = Color.Gray;
-            label12.Location = new Point(20, 789);
+            label12.Location = new Point(20, 788);
             label12.Name = "label12";
-            label12.Size = new Size(79, 14);
+            label12.Size = new Size(72, 14);
             label12.TabIndex = 5;
             label12.Text = "version : V1";
             // 
             // WeekTable
             // 
             WeekTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            WeekTable.BackColor = Color.FromArgb(20, 30, 48);
+            WeekTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             WeekTable.ColumnCount = 7;
             WeekTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857141F));
             WeekTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857141F));
@@ -232,6 +238,7 @@ namespace Weekly_Planner
             WeekTable.Controls.Add(pnlTuesday, 2, 1);
             WeekTable.Controls.Add(pnlMonday, 3, 1);
             WeekTable.Controls.Add(label2, 0, 0);
+            WeekTable.Font = new Font("Tahoma", 12F);
             WeekTable.Location = new Point(16, 291);
             WeekTable.Name = "WeekTable";
             WeekTable.RowCount = 2;
@@ -243,13 +250,12 @@ namespace Weekly_Planner
             // label11
             // 
             label11.AutoSize = true;
-            label11.BorderStyle = BorderStyle.FixedSingle;
             label11.Dock = DockStyle.Fill;
-            label11.Font = new Font("Tahoma", 16F, FontStyle.Bold);
-            label11.ForeColor = Color.Gray;
-            label11.Location = new Point(1485, 0);
+            label11.Font = new Font("Tahoma", 14F, FontStyle.Bold);
+            label11.ForeColor = Color.Silver;
+            label11.Location = new Point(1485, 1);
             label11.Name = "label11";
-            label11.Size = new Size(242, 95);
+            label11.Size = new Size(241, 95);
             label11.TabIndex = 10;
             label11.Text = "الجمعة";
             label11.TextAlign = ContentAlignment.MiddleCenter;
@@ -257,13 +263,12 @@ namespace Weekly_Planner
             // label10
             // 
             label10.AutoSize = true;
-            label10.BorderStyle = BorderStyle.FixedSingle;
             label10.Dock = DockStyle.Fill;
-            label10.Font = new Font("Tahoma", 16F, FontStyle.Bold);
-            label10.ForeColor = Color.Gray;
-            label10.Location = new Point(1238, 0);
+            label10.Font = new Font("Tahoma", 14F, FontStyle.Bold);
+            label10.ForeColor = Color.Silver;
+            label10.Location = new Point(1239, 1);
             label10.Name = "label10";
-            label10.Size = new Size(241, 95);
+            label10.Size = new Size(239, 95);
             label10.TabIndex = 9;
             label10.Text = "السبت";
             label10.TextAlign = ContentAlignment.MiddleCenter;
@@ -271,13 +276,12 @@ namespace Weekly_Planner
             // label9
             // 
             label9.AutoSize = true;
-            label9.BorderStyle = BorderStyle.FixedSingle;
             label9.Dock = DockStyle.Fill;
-            label9.Font = new Font("Tahoma", 16F, FontStyle.Bold);
-            label9.ForeColor = Color.Gray;
-            label9.Location = new Point(991, 0);
+            label9.Font = new Font("Tahoma", 14F, FontStyle.Bold);
+            label9.ForeColor = Color.Silver;
+            label9.Location = new Point(992, 1);
             label9.Name = "label9";
-            label9.Size = new Size(241, 95);
+            label9.Size = new Size(240, 95);
             label9.TabIndex = 8;
             label9.Text = "الأحد";
             label9.TextAlign = ContentAlignment.MiddleCenter;
@@ -285,13 +289,12 @@ namespace Weekly_Planner
             // label8
             // 
             label8.AutoSize = true;
-            label8.BorderStyle = BorderStyle.FixedSingle;
             label8.Dock = DockStyle.Fill;
-            label8.Font = new Font("Tahoma", 16F, FontStyle.Bold);
-            label8.ForeColor = Color.Gray;
-            label8.Location = new Point(744, 0);
+            label8.Font = new Font("Tahoma", 14F, FontStyle.Bold);
+            label8.ForeColor = Color.Silver;
+            label8.Location = new Point(745, 1);
             label8.Name = "label8";
-            label8.Size = new Size(241, 95);
+            label8.Size = new Size(240, 95);
             label8.TabIndex = 7;
             label8.Text = "الإثنين";
             label8.TextAlign = ContentAlignment.MiddleCenter;
@@ -299,13 +302,12 @@ namespace Weekly_Planner
             // label7
             // 
             label7.AutoSize = true;
-            label7.BorderStyle = BorderStyle.FixedSingle;
             label7.Dock = DockStyle.Fill;
-            label7.Font = new Font("Tahoma", 16F, FontStyle.Bold);
-            label7.ForeColor = Color.Gray;
-            label7.Location = new Point(497, 0);
+            label7.Font = new Font("Tahoma", 14F, FontStyle.Bold);
+            label7.ForeColor = Color.Silver;
+            label7.Location = new Point(498, 1);
             label7.Name = "label7";
-            label7.Size = new Size(241, 95);
+            label7.Size = new Size(240, 95);
             label7.TabIndex = 6;
             label7.Text = "الثلاثاء";
             label7.TextAlign = ContentAlignment.MiddleCenter;
@@ -313,13 +315,12 @@ namespace Weekly_Planner
             // label5
             // 
             label5.AutoSize = true;
-            label5.BorderStyle = BorderStyle.FixedSingle;
             label5.Dock = DockStyle.Fill;
-            label5.Font = new Font("Tahoma", 16F, FontStyle.Bold);
-            label5.ForeColor = Color.Gray;
-            label5.Location = new Point(250, 0);
+            label5.Font = new Font("Tahoma", 14F, FontStyle.Bold);
+            label5.ForeColor = Color.Silver;
+            label5.Location = new Point(251, 1);
             label5.Name = "label5";
-            label5.Size = new Size(241, 95);
+            label5.Size = new Size(240, 95);
             label5.TabIndex = 5;
             label5.Text = "الأربعاء";
             label5.TextAlign = ContentAlignment.MiddleCenter;
@@ -327,14 +328,14 @@ namespace Weekly_Planner
             // pnlThursday
             // 
             pnlThursday.AutoScroll = true;
-            pnlThursday.BorderStyle = BorderStyle.FixedSingle;
             pnlThursday.DayName = DayName.Thu;
             pnlThursday.Dock = DockStyle.Fill;
             pnlThursday.FlowDirection = FlowDirection.TopDown;
-            pnlThursday.Location = new Point(3, 98);
+            pnlThursday.Font = new Font("Tahoma", 12F);
+            pnlThursday.Location = new Point(4, 100);
             pnlThursday.Name = "pnlThursday";
             pnlThursday.Padding = new Padding(0, 3, 0, 3);
-            pnlThursday.Size = new Size(241, 378);
+            pnlThursday.Size = new Size(240, 375);
             pnlThursday.TabIndex = 0;
             pnlThursday.WrapContents = false;
             pnlThursday.ActivityChanged += UpdateStatus;
@@ -342,14 +343,14 @@ namespace Weekly_Planner
             // pnlFriday
             // 
             pnlFriday.AutoScroll = true;
-            pnlFriday.BorderStyle = BorderStyle.FixedSingle;
             pnlFriday.DayName = DayName.Fri;
             pnlFriday.Dock = DockStyle.Fill;
             pnlFriday.FlowDirection = FlowDirection.TopDown;
-            pnlFriday.Location = new Point(1485, 98);
+            pnlFriday.Font = new Font("Tahoma", 12F);
+            pnlFriday.Location = new Point(1485, 100);
             pnlFriday.Name = "pnlFriday";
             pnlFriday.Padding = new Padding(0, 3, 0, 3);
-            pnlFriday.Size = new Size(242, 378);
+            pnlFriday.Size = new Size(241, 375);
             pnlFriday.TabIndex = 1;
             pnlFriday.WrapContents = false;
             pnlFriday.ActivityChanged += UpdateStatus;
@@ -357,14 +358,14 @@ namespace Weekly_Planner
             // pnlSaturday
             // 
             pnlSaturday.AutoScroll = true;
-            pnlSaturday.BorderStyle = BorderStyle.FixedSingle;
             pnlSaturday.DayName = DayName.Sat;
             pnlSaturday.Dock = DockStyle.Fill;
             pnlSaturday.FlowDirection = FlowDirection.TopDown;
-            pnlSaturday.Location = new Point(1238, 98);
+            pnlSaturday.Font = new Font("Tahoma", 12F);
+            pnlSaturday.Location = new Point(1239, 100);
             pnlSaturday.Name = "pnlSaturday";
             pnlSaturday.Padding = new Padding(0, 3, 0, 3);
-            pnlSaturday.Size = new Size(241, 378);
+            pnlSaturday.Size = new Size(239, 375);
             pnlSaturday.TabIndex = 1;
             pnlSaturday.WrapContents = false;
             pnlSaturday.ActivityChanged += UpdateStatus;
@@ -372,14 +373,14 @@ namespace Weekly_Planner
             // pnlSunday
             // 
             pnlSunday.AutoScroll = true;
-            pnlSunday.BorderStyle = BorderStyle.FixedSingle;
             pnlSunday.DayName = DayName.Sun;
             pnlSunday.Dock = DockStyle.Fill;
             pnlSunday.FlowDirection = FlowDirection.TopDown;
-            pnlSunday.Location = new Point(991, 98);
+            pnlSunday.Font = new Font("Tahoma", 12F);
+            pnlSunday.Location = new Point(992, 100);
             pnlSunday.Name = "pnlSunday";
             pnlSunday.Padding = new Padding(0, 3, 0, 3);
-            pnlSunday.Size = new Size(241, 378);
+            pnlSunday.Size = new Size(240, 375);
             pnlSunday.TabIndex = 1;
             pnlSunday.WrapContents = false;
             pnlSunday.ActivityChanged += UpdateStatus;
@@ -387,14 +388,14 @@ namespace Weekly_Planner
             // pnlWednesday
             // 
             pnlWednesday.AutoScroll = true;
-            pnlWednesday.BorderStyle = BorderStyle.FixedSingle;
             pnlWednesday.DayName = DayName.Wed;
             pnlWednesday.Dock = DockStyle.Fill;
             pnlWednesday.FlowDirection = FlowDirection.TopDown;
-            pnlWednesday.Location = new Point(250, 98);
+            pnlWednesday.Font = new Font("Tahoma", 12F);
+            pnlWednesday.Location = new Point(251, 100);
             pnlWednesday.Name = "pnlWednesday";
             pnlWednesday.Padding = new Padding(0, 3, 0, 3);
-            pnlWednesday.Size = new Size(241, 378);
+            pnlWednesday.Size = new Size(240, 375);
             pnlWednesday.TabIndex = 1;
             pnlWednesday.WrapContents = false;
             pnlWednesday.ActivityChanged += UpdateStatus;
@@ -402,14 +403,14 @@ namespace Weekly_Planner
             // pnlTuesday
             // 
             pnlTuesday.AutoScroll = true;
-            pnlTuesday.BorderStyle = BorderStyle.FixedSingle;
             pnlTuesday.DayName = DayName.Tue;
             pnlTuesday.Dock = DockStyle.Fill;
             pnlTuesday.FlowDirection = FlowDirection.TopDown;
-            pnlTuesday.Location = new Point(497, 98);
+            pnlTuesday.Font = new Font("Tahoma", 12F);
+            pnlTuesday.Location = new Point(498, 100);
             pnlTuesday.Name = "pnlTuesday";
             pnlTuesday.Padding = new Padding(0, 3, 0, 3);
-            pnlTuesday.Size = new Size(241, 378);
+            pnlTuesday.Size = new Size(240, 375);
             pnlTuesday.TabIndex = 2;
             pnlTuesday.WrapContents = false;
             pnlTuesday.ActivityChanged += UpdateStatus;
@@ -417,14 +418,14 @@ namespace Weekly_Planner
             // pnlMonday
             // 
             pnlMonday.AutoScroll = true;
-            pnlMonday.BorderStyle = BorderStyle.FixedSingle;
             pnlMonday.DayName = DayName.Mon;
             pnlMonday.Dock = DockStyle.Fill;
             pnlMonday.FlowDirection = FlowDirection.TopDown;
-            pnlMonday.Location = new Point(744, 98);
+            pnlMonday.Font = new Font("Tahoma", 12F);
+            pnlMonday.Location = new Point(745, 100);
             pnlMonday.Name = "pnlMonday";
             pnlMonday.Padding = new Padding(0, 3, 0, 3);
-            pnlMonday.Size = new Size(241, 378);
+            pnlMonday.Size = new Size(240, 375);
             pnlMonday.TabIndex = 3;
             pnlMonday.WrapContents = false;
             pnlMonday.ActivityChanged += UpdateStatus;
@@ -432,13 +433,12 @@ namespace Weekly_Planner
             // label2
             // 
             label2.AutoSize = true;
-            label2.BorderStyle = BorderStyle.FixedSingle;
             label2.Dock = DockStyle.Fill;
-            label2.Font = new Font("Tahoma", 16F, FontStyle.Bold);
-            label2.ForeColor = Color.Gray;
-            label2.Location = new Point(3, 0);
+            label2.Font = new Font("Tahoma", 14F, FontStyle.Bold);
+            label2.ForeColor = Color.Silver;
+            label2.Location = new Point(4, 1);
             label2.Name = "label2";
-            label2.Size = new Size(241, 95);
+            label2.Size = new Size(240, 95);
             label2.TabIndex = 4;
             label2.Text = "الخميس";
             label2.TextAlign = ContentAlignment.MiddleCenter;

@@ -42,8 +42,9 @@
             btnAddNew.Margin = new Padding(0, 3, 0, 3);
             btnAddNew.Size = new Size(230, 75);
             btnAddNew.Text = "إضافة نشاط";
-            btnAddNew.BackColor = Color.FromArgb(245,20, 20, 35);
-            btnAddNew.ForeColor = Color.Gray;
+            btnAddNew.BackColor = Color.FromArgb(27, 44, 66);
+            btnAddNew.FlatStyle = FlatStyle.Popup;
+            btnAddNew.ForeColor = Color.FromArgb(79, 209, 197);
             btnAddNew.Font = new Font("Tahoma", 12, FontStyle.Bold);
             btnAddNew.Click += btnAddNew_Click;
             ///////////////////////////////////////////////////////////////////////

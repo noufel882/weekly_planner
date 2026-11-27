@@ -80,12 +80,12 @@ namespace Weekly_Planner
         /// <param name="e">The event data.</param>
         private void UpdateStatus(object sender, EventArgs e)
         {
-            TotalPlannedTime = WeekTable.Controls.OfType<DayPanel>().Sum(day =>day.TotalPlannedTime);
+            TotalPlannedTime = WeekTable.Controls.OfType<DayPanel>().Sum(day => day.TotalPlannedTime);
             TasksCount = WeekTable.Controls.OfType<DayPanel>().Sum(day => day.TasksCount);
             PlanningDays = WeekTable.Controls.OfType<DayPanel>().Count(day => day.TasksCount > 0);
             MarkedAsUnsaved();
         }
-     
+
 
         /// <summary>
         /// Prompts the user to choose a JSON file and exports all day plans.
@@ -125,8 +125,9 @@ namespace Weekly_Planner
         private void btnImport_Click(object sender, EventArgs e)
         {
             //If user already open a week planner and it's not save yet
-            if (!_planSaved) {
-                if (MessageBox.Show("انت لم تقم بحفظ الجدول الحالي ، هل تريد الجدول الحالي اولا ؟", "تنبيه",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            if (!_planSaved)
+            {
+                if (MessageBox.Show("انت لم تقم بحفظ الجدول الحالي ، هل تريد الجدول الحالي اولا ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     btnSave.PerformClick();
                     return;
@@ -278,14 +279,14 @@ namespace Weekly_Planner
         /// <param name="e">The event data used to cancel closing when needed.</param>
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!_planSaved && MessageBox.Show("انت لم تقم بحفظ التعديلات ، هل تريد الحفظ ؟","حفظ التعديلات",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            if (!_planSaved && MessageBox.Show("انت لم تقم بحفظ التعديلات ، هل تريد الحفظ ؟", "حفظ التعديلات", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 btnSave.PerformClick();
                 e.Cancel = true;
                 return;
             }
         }
-    
+
         /// <summary>
         /// Removes all activities from the weekly day panels.
         /// </summary>
@@ -293,9 +294,8 @@ namespace Weekly_Planner
         {
             foreach (var day in WeekTable.Controls.OfType<DayPanel>())
             {
-                day.Clear();           
+                day.Clear();
             }
         }
-
     }
 }

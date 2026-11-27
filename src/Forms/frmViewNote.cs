@@ -29,5 +29,6 @@ namespace Weekly_Planner.Forms
         /// <param name="sender">The close button that raised the event.</param>
         /// <param name="e">The event data.</param>
         private void btnClose_Click(object sender, EventArgs e) => Close();
+
     }
 }
