@@ -22,29 +22,25 @@ namespace Weekly_Planner.Models
         /// <param name="path">The full path of the JSON file.</param>
         /// <returns>An array of planner days, or <see langword="null"/> when the path is invalid or the file does not exist.</returns>
 
-        public static PlannerDay[]? Import(string path)
+
+        public static PlannerDay[] Import(string path)
         {
-            if (string.IsNullOrWhiteSpace(path) || !File.Exists(path)) return null;
+            // 1. Read file
+            string json = File.ReadAllText(path);
+
+            // 2. Handle completely empty file
+            if (json.Length == 0)
+                return Array.Empty<PlannerDay>();
 
 
-            var json = File.ReadAllText(path);
+            // 3. Deserialize
+            PlannerDay[]? days =
+                JsonSerializer.Deserialize<PlannerDay[]>(json, options);
 
-            if (string.IsNullOrWhiteSpace(json))
-                return null;
-
-            // try to create days throught json file
-            PlannerDay[] days ;
-            try
-            {
-                days=JsonSerializer.Deserialize<PlannerDay[]>(json, options);
-            }
-            catch
-            {
-                return null;
-            }
-
-            return days;
+            // 4. Ensure successful deserialization
+            return days ?? throw new JsonException();
         }
+
 
         /// <summary>
         /// Exports weekly planner data to a JSON file.
@@ -52,7 +48,7 @@ namespace Weekly_Planner.Models
         /// <param name="path">The full destination file path.</param>
         /// <param name="days">The planner days to serialize.</param>
         /// <returns><see langword="true"/> when the file is written successfully; otherwise, <see langword="false"/>.</returns>
-      public static bool Export(string path , PlannerDay[] days)
+        public static bool Export(string path , PlannerDay[] days)
         {
             if (string.IsNullOrWhiteSpace(path) || days is null)
                 return false;

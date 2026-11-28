@@ -1,5 +1,6 @@
 #pragma warning disable WFO1000 // disabled warnings for this file
 
+using System.Text.Json;
 using System.Windows.Forms.VisualStyles;
 using Weekly_Planner.Controls;
 using Weekly_Planner.Models;
@@ -15,10 +16,9 @@ namespace Weekly_Planner
         private int _totalPlannedTime = 0;
         private int _plannedDays = 0;
 
-        private string _currentPath = string.Empty;
+        private string _planPath = string.Empty;
 
         private bool _planSaved = true;
-
 
         /// <summary>
         /// Gets or sets the total number of activities across all planned days.
@@ -73,6 +73,19 @@ namespace Weekly_Planner
             PlanningDays = 0;
         }
 
+        public frmMain(string planPath)
+        {
+            InitializeComponent();
+            TasksCount = 0;
+            TotalPlannedTime = 0;
+            PlanningDays = 0;
+            _planPath = planPath;
+
+            this.LoadPlan(planPath);
+        }
+
+
+
         /// <summary>
         /// Recalculates the summary displayed in the main window.
         /// </summary>
@@ -95,7 +108,7 @@ namespace Weekly_Planner
         private void btnSave_Click(object sender, EventArgs e)
         {
             var savePath = string.Empty;
-            if (string.IsNullOrWhiteSpace(_currentPath))
+            if (string.IsNullOrWhiteSpace(_planPath))
             {
                 using SaveFileDialog dialog = new();
                 dialog.Title = "Export Weekly Planner";
@@ -112,7 +125,7 @@ namespace Weekly_Planner
                 savePath = dialog.FileName;
             }
             else
-                savePath = _currentPath;
+                savePath = _planPath;
 
             SavePlan(savePath);
         }
@@ -158,16 +171,68 @@ namespace Weekly_Planner
         /// <param name="loadPath">The path of the JSON file to load.</param>
         private void LoadPlan(string loadPath)
         {
-            PlannerDay[]? days = StorageManager.Import(loadPath);
 
-            if (days is null)
+            PlannerDay[] days;
+
+            try
             {
-                MessageBox.Show("الملف اللذي اخترته تالف أو غير صالح للستعمال ، الرجاء إختيار ملف اخر"
-                    , "فشل التحميل",
+                days = StorageManager.Import(loadPath);
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show(
+                    "تعذر العثور على ملف الخطة. ربما تم نقله أو حذفه. يرجى اختيار ملف الخطة من جديد.",
+                    "تعذر تحميل الخطة",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Hand);
+                    MessageBoxIcon.Error);
                 return;
             }
+            catch (DirectoryNotFoundException)
+            {
+                MessageBox.Show(
+                    "المجلد الذي توجد فيه الخطة لم يعد متاحاً. يرجى اختيار ملف الخطة من موقعه الحالي.",
+                    "تعذر تحميل الخطة",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            catch (JsonException)
+            {
+                MessageBox.Show(
+                    "لا يمكن استخدام هذه الخطة لأنها تالفة أو غير صالحة. يرجى اختيار ملف خطة آخر.",
+                    "خطة غير صالحة",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show(
+                    "تعذر الوصول إلى ملف الخطة. يرجى التأكد من إمكانية الوصول إليه ثم المحاولة مجدداً.",
+                    "تعذر تحميل الخطة",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            catch (PathTooLongException)
+            {
+                MessageBox.Show(
+                    "تعذر الوصول إلى الخطة لأن موقع حفظها غير صالح أو طويل جداً.",
+                    "تعذر تحميل الخطة",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            catch (IOException)
+            {
+                MessageBox.Show(
+                    "حدثت مشكلة أثناء قراءة الخطة. يرجى التأكد من أن الملف متاح ثم المحاولة مجدداً.",
+                    "تعذر تحميل الخطة",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
 
 
             this.Clear();
@@ -260,7 +325,11 @@ namespace Weekly_Planner
         private void MarkedAsSavedInPath(string path)
         {
             _planSaved = true;
-            _currentPath = path;
+            _planPath = path;
+
+            Properties.Settings.Default.PlanPath = _planPath;
+            Properties.Settings.Default.Save();
+
             UpdateTitle();
         }
 
@@ -269,7 +338,7 @@ namespace Weekly_Planner
         /// </summary>
         private void UpdateTitle()
         {
-            this.Text = _currentPath + (_planSaved ? "" : " (Unsaved) ");
+            this.Text = _planPath + (_planSaved ? "" : " (Unsaved) ");
         }
 
         /// <summary>
